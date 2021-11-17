@@ -1,16 +1,10 @@
 import React from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import banner from '../../../images/banner.jpg';
 import banner2 from '../../../images/banner2.jpg';
 import { Button, Container, Typography } from '@mui/material';
+import { NavLink } from 'react-router-dom';
 
-
-const bannerbg = {
-    background: `url(${banner})`
-    // style={bannerbg}
-
-}
 
 const varticatCenter = {
     display: 'flex',
@@ -32,11 +26,13 @@ const Banner = () => {
                                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consectetur error sed minus provident, tempora incidunt. Quo, ea molestias maiores qui pariatur voluptate quis et rem, impedit amet totam, ab voluptates.
                             </Typography>
 
-                            <Button variant="contained" style={{ backgroundColor: '#5CE7ED' }}>Dashboard</Button>
+                            <NavLink style={{ textDecoration: 'none', color: 'white' }} to="/dashboard">
+                                <Button variant="contained" style={{ backgroundColor: '#5CE7ED' }}>Dashboard</Button>
+                            </NavLink>
                         </Box>
                     </Grid>
                     <Grid item xs={12} md={6} style={varticatCenter}>
-                        <img style={{ width: '500px', borderRadius: 50 }} src={banner2} alt="" />
+                        <img style={{ width: '100%', borderRadius: 50 }} src={banner2} alt="" />
                     </Grid>
 
                 </Grid>
