@@ -43,7 +43,7 @@ const MyFile = () => {
                                 <TableCell align="center">{row.personEmail}</TableCell>
                                 <TableCell align="center">{row.personName}</TableCell>
                                 <TableCell align="center">
-                                    <Button>Update</Button>
+                                    <Button sx={{ color: 'green', fontWeight: 700 }}>Update</Button>
                                 </TableCell>
                             </TableRow>
                         ))}

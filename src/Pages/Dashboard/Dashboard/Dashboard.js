@@ -43,18 +43,55 @@ function Dashboard(props) {
 
     const drawer = (
         <div>
-            <Toolbar>
-                <h2><AccountCircleIcon /> {user.displayName}</h2>
+            <Toolbar >
+                <h3 ><AccountCircleIcon sx={{ color: 'Peru', fontSize: '30px' }} />
+                    {user.displayName}
+                </h3>
             </Toolbar>
             <Divider />
 
             {/* nested route in dashboard  */}
 
             <Box sx={{ textAlign: 'center', marginTop: '15PX' }}>
-                <Link style={{ textDecoration: 'none', color: 'black' }} to={`${url}/dashboard`}> <Button color='inherit'><HomeIcon />Home</Button> </Link> <br />
-                <Link style={{ textDecoration: 'none', color: 'black' }} to={`${url}/myFile`}> <Button color='inherit'><DescriptionIcon />My File</Button> </Link> <br />
-                <Link style={{ textDecoration: 'none', color: 'black' }} to={`${url}/allFile`}> <Button color='inherit'><DriveFileMoveIcon />All File</Button> </Link> <br />
-                <Link style={{ textDecoration: 'none', color: 'black' }} to={`${url}/addFile`}> <Button color='inherit'><AddBoxIcon /> Add File</Button> </Link> <br />
+                <Link
+                    style={{ textDecoration: 'none', color: 'black' }}
+                    to={`${url}/dashboard`}>
+                    <Button color='inherit'>
+                        <HomeIcon sx={{ color: 'crimson' }} />
+                        Home
+                    </Button>
+                </Link>
+                <br />
+
+                <Link
+                    style={{ textDecoration: 'none', color: 'black' }}
+                    to={`${url}/myFile`}>
+                    <Button color='inherit'>
+                        <DescriptionIcon sx={{ color: 'GoldenRod' }} />
+                        My File
+                    </Button>
+                </Link>
+                <br />
+
+                <Link
+                    style={{ textDecoration: 'none', color: 'black' }}
+                    to={`${url}/allFile`}>
+                    <Button color='inherit'>
+                        <DriveFileMoveIcon sx={{ color: 'GoldenRod' }} />
+                        All File
+                    </Button>
+                </Link>
+                <br />
+
+                <Link
+                    style={{ textDecoration: 'none', color: 'black' }}
+                    to={`${url}/addFile`}>
+                    <Button color='inherit'>
+                        <AddBoxIcon sx={{ color: 'Peru' }} />
+                        Add File
+                    </Button>
+                </Link>
+                <br />
             </Box>
 
             {/* <List>

@@ -9,6 +9,7 @@ import Paper from '@mui/material/Paper';
 import { Button, TextField } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { Box } from '@mui/system';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 
 
@@ -67,7 +68,7 @@ const AllFile = () => {
                                 <TableCell align="center">{row.personEmail}</TableCell>
                                 <TableCell align="center">{row.personName}</TableCell>
                                 <TableCell align="center">
-                                    <Button>Delete</Button>
+                                    <Button sx={{ color: 'red' }}><DeleteIcon /></Button>
                                 </TableCell>
 
 
