@@ -8,6 +8,7 @@ import Register from './Pages/Home/Login/Register/Register';
 import AuthProvider from './context/AuthProvider/AuthProvider';
 import Dashboard from './Pages/Dashboard/Dashboard/Dashboard';
 import PrivateRoute from './Pages/Home/Login/PrivateRoute/PrivateRoute';
+import AddFile from './Pages/Dashboard/AddFile/AddFile';
 
 
 
@@ -22,6 +23,10 @@ function App() {
 
           <Route path="/home">
             <Home></Home>
+          </Route>
+
+          <Route path="/add-file">
+            <AddFile></AddFile>
           </Route>
 
           <Route path="/login">
