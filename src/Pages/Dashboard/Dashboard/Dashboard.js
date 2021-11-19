@@ -17,15 +17,25 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import MyFile from '../MyFile/MyFile';
 import AllFile from '../AllFile/AllFile';
-import { NavLink } from 'react-router-dom';
+import AddFile from '../AddFile/AddFile';
 import useAuth from '../../../hooks/useAuth';
+import { BrowserRouter as Router, Switch, Route, Link, useParams, useRouteMatch } from "react-router-dom";
+import { Button } from '@mui/material';
+import DriveFileMoveIcon from '@mui/icons-material/DriveFileMove';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import AddBoxIcon from '@mui/icons-material/AddBox';
+import DescriptionIcon from '@mui/icons-material/Description';
+import HomeIcon from '@mui/icons-material/Home';
 
-const drawerWidth = 240;
+
+const drawerWidth = 200;
 
 function Dashboard(props) {
     const { user } = useAuth();
     const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
+
+    let { path, url } = useRouteMatch();
 
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
@@ -34,10 +44,20 @@ function Dashboard(props) {
     const drawer = (
         <div>
             <Toolbar>
-                <h3>{user.displayName}</h3>
+                <h2><AccountCircleIcon /> {user.displayName}</h2>
             </Toolbar>
             <Divider />
-            <List>
+
+            {/* nested route in dashboard  */}
+
+            <Box sx={{ textAlign: 'center', marginTop: '15PX' }}>
+                <Link style={{ textDecoration: 'none', color: 'black' }} to={`${url}/dashboard`}> <Button color='inherit'><HomeIcon />Home</Button> </Link> <br />
+                <Link style={{ textDecoration: 'none', color: 'black' }} to={`${url}/myFile`}> <Button color='inherit'><DescriptionIcon />My File</Button> </Link> <br />
+                <Link style={{ textDecoration: 'none', color: 'black' }} to={`${url}/allFile`}> <Button color='inherit'><DriveFileMoveIcon />All File</Button> </Link> <br />
+                <Link style={{ textDecoration: 'none', color: 'black' }} to={`${url}/addFile`}> <Button color='inherit'><AddBoxIcon /> Add File</Button> </Link> <br />
+            </Box>
+
+            {/* <List>
                 {['Home', 'Add File', 'All Files', 'My Files', 'Drafts'].map((text, index) => (
                     <ListItem button key={text}>
                         <ListItemIcon>
@@ -46,9 +66,9 @@ function Dashboard(props) {
                         <ListItemText primary={text} />
                     </ListItem>
                 ))}
-            </List>
+            </List> */}
 
-        </div>
+        </div >
     );
 
     const container = window !== undefined ? () => window().document.body : undefined;
@@ -76,9 +96,9 @@ function Dashboard(props) {
                     <Typography variant="h6" noWrap component="div">
                         Dashboard
                     </Typography>
-                    <NavLink style={{ textDecoration: 'none', color: 'white' }} to="/home">
+                    <Link style={{ textDecoration: 'none', color: 'white', marginLeft: '30PX' }} to="/home">
                         <Typography>Home</Typography>
-                    </NavLink>
+                    </Link>
                 </Toolbar>
             </AppBar>
             <Box
@@ -119,8 +139,23 @@ function Dashboard(props) {
             >
                 <Toolbar />
                 <Typography paragraph>
-                    <MyFile></MyFile>
-                    {/* <AllFile></AllFile> */}
+                    <Switch>
+                        <Route exact path={path}>
+
+                        </Route>
+                        <Route path={`${path}/myFile`}>
+                            <MyFile></MyFile>
+                        </Route>
+
+                        <Route path={`${path}/allFile`}>
+                            <AllFile></AllFile>
+                        </Route>
+
+                        <Route path={`${path}/addFile`}>
+                            <AddFile></AddFile>
+                        </Route>
+                    </Switch>
+
                 </Typography>
 
             </Box>
