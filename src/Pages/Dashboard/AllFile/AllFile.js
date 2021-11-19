@@ -6,10 +6,15 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { Button } from '@mui/material';
+import { Button, TextField } from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
+import { Box } from '@mui/system';
+
+
 
 const AllFile = () => {
     const [allFiles, setAllFiles] = useState([]);
+    const [search, setSearch] = useState('');
 
     useEffect(() => {
         fetch('http://localhost:5000/files/user')
@@ -19,7 +24,20 @@ const AllFile = () => {
 
     return (
         <div>
-            <h3 style={{ textAlign: "center" }}>Total file : {allFiles.length}</h3>
+            <h3 style={{ textAlign: "center" }}>Total File : {allFiles.length}</h3>
+
+            {/* search input  */}
+            <Box sx={{ display: 'flex', alignItems: 'flex-end', mb: 5 }}>
+                <SearchIcon sx={{ color: 'action.active', mr: 1 }} />
+                <TextField
+                    id="filled-search"
+                    label="Search..."
+                    type="search"
+                    onChange={(e) => { setSearch(e.target.value) }}
+                    variant="standard" />
+            </Box>
+
+
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 650 }} aria-label="files table">
                     <TableHead>
@@ -32,7 +50,15 @@ const AllFile = () => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {allFiles.map((row) => (
+                        {allFiles.filter(val => {
+                            if (search === '') {
+                                return val;
+                            }
+                            else if (val.fileName.toLowerCase().includes(search.toLowerCase())
+                            ) {
+                                return val
+                            }
+                        }).map((row) => (
                             <TableRow
                                 key={row._id}
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
