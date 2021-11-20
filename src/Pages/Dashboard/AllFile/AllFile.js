@@ -21,7 +21,24 @@ const AllFile = () => {
         fetch('http://localhost:5000/files/user')
             .then(res => res.json())
             .then(data => setAllFiles(data))
-    }, [])
+    }, []);
+
+    // Delete a product 
+    const handleDelete = id => {
+        const confirm = window.confirm('Are You Sure To Delete This File...?');
+        if (confirm) {
+            fetch(`http://localhost:5000/files/user/${id}`, {
+                method: 'DELETE'
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log('this is data', data);
+                    const remaining = allFiles.filter(file => file._id !== id);
+                    setAllFiles(remaining);
+                })
+        }
+
+    }
 
     return (
         <div>
@@ -68,7 +85,11 @@ const AllFile = () => {
                                 <TableCell align="center">{row.personEmail}</TableCell>
                                 <TableCell align="center">{row.personName}</TableCell>
                                 <TableCell align="center">
-                                    <Button sx={{ color: 'red' }}><DeleteIcon /></Button>
+                                    <Button
+                                        onClick={() => handleDelete(row._id)}
+                                        sx={{ color: 'red' }}>
+                                        <DeleteIcon />
+                                    </Button>
                                 </TableCell>
 
 

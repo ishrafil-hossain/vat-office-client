@@ -45,7 +45,7 @@ const Register = () => {
                             <Typography
                                 sx={{ width: 1, m: 1 }}
                                 variant="subtitle1"
-                                gutterBottom component="div">
+                                gutterBottom component="span">
                                 Please Register
                             </Typography>
                             {!isLoading && <form onSubmit={handleRegisterSubmit}>

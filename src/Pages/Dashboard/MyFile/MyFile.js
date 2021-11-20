@@ -23,7 +23,7 @@ const MyFile = () => {
         <div>
             <h3 style={{ textAlign: "center" }}>Total file : {myFiles.length}</h3>
             <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 650 }} aria-label="files table">
+                <Table sx={{ minWidth: 650 }} aria-label="files table" >
                     <TableHead>
                         <TableRow>
                             <TableCell align="center">File Name</TableCell>
