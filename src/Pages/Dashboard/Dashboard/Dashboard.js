@@ -6,12 +6,6 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import MailIcon from '@mui/icons-material/Mail';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
@@ -19,19 +13,20 @@ import MyFile from '../MyFile/MyFile';
 import AllFile from '../AllFile/AllFile';
 import AddFile from '../AddFile/AddFile';
 import useAuth from '../../../hooks/useAuth';
-import { BrowserRouter as Router, Switch, Route, Link, useParams, useRouteMatch } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link, useRouteMatch } from "react-router-dom";
 import { Button } from '@mui/material';
 import DriveFileMoveIcon from '@mui/icons-material/DriveFileMove';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import DescriptionIcon from '@mui/icons-material/Description';
 import HomeIcon from '@mui/icons-material/Home';
+import Drop from '../Drop/Drop';
+import MakeReceptionist from '../MakeReceptionist/MakeReceptionist';
 
 
 const drawerWidth = 200;
 
 function Dashboard(props) {
-    const { user } = useAuth();
+    const { user, receptionist } = useAuth();
     const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -44,7 +39,7 @@ function Dashboard(props) {
     const drawer = (
         <div>
             <Toolbar >
-                <h3 ><AccountCircleIcon sx={{ color: 'Peru', fontSize: '30px' }} />
+                <h3>
                     {user.displayName}
                 </h3>
             </Toolbar>
@@ -53,57 +48,63 @@ function Dashboard(props) {
             {/* nested route in dashboard  */}
 
             <Box sx={{ textAlign: 'center', marginTop: '15PX' }}>
-                <Link
-                    style={{ textDecoration: 'none', color: 'black' }}
-                    to={`${url}/dashboard`}>
-                    <Button color='inherit'>
-                        <HomeIcon sx={{ color: 'crimson' }} />
-                        Home
-                    </Button>
-                </Link>
-                <br />
+                {
+                    !receptionist && <Box>
+                        <Link
+                            style={{ textDecoration: 'none', color: 'black' }}
+                            to={`${url}/dashboard`}>
+                            <Button color='inherit'>
+                                <HomeIcon sx={{ color: 'crimson' }} />
+                                Home
+                            </Button>
+                        </Link>
+                        <br />
 
-                <Link
-                    style={{ textDecoration: 'none', color: 'black' }}
-                    to={`${url}/myFile`}>
-                    <Button color='inherit'>
-                        <DescriptionIcon sx={{ color: 'GoldenRod' }} />
-                        My File
-                    </Button>
-                </Link>
-                <br />
+                        <Link
+                            style={{ textDecoration: 'none', color: 'black' }}
+                            to={`${url}/myFile`}>
+                            <Button color='inherit'>
+                                <DescriptionIcon sx={{ color: 'GoldenRod' }} />
+                                My File
+                            </Button>
+                        </Link>
+                        <br />
 
-                <Link
-                    style={{ textDecoration: 'none', color: 'black' }}
-                    to={`${url}/allFile`}>
-                    <Button color='inherit'>
-                        <DriveFileMoveIcon sx={{ color: 'GoldenRod' }} />
-                        All File
-                    </Button>
-                </Link>
-                <br />
+                        <Link
+                            style={{ textDecoration: 'none', color: 'black' }}
+                            to={`${url}/allFile`}>
+                            <Button color='inherit'>
+                                <DriveFileMoveIcon sx={{ color: 'GoldenRod' }} />
+                                All File
+                            </Button>
+                        </Link>
+                        <br />
+                    </Box>
+                }
 
-                <Link
-                    style={{ textDecoration: 'none', color: 'black' }}
-                    to={`${url}/addFile`}>
-                    <Button color='inherit'>
-                        <AddBoxIcon sx={{ color: 'Peru' }} />
-                        Add File
-                    </Button>
-                </Link>
+                {
+                    receptionist && <Box>
+                        <Link
+                            style={{ textDecoration: 'none', color: 'black' }}
+                            to={`${url}/addFile`}>
+                            <Button color='inherit'>
+                                <AddBoxIcon sx={{ color: 'Peru' }} />
+                                Add File
+                            </Button>
+                        </Link>
+
+                        <Link
+                            style={{ textDecoration: 'none', color: 'black' }}
+                            to={`${url}/make-receptionist`}>
+                            <Button color='inherit'>
+                                <AddBoxIcon sx={{ color: 'Peru' }} />
+                                Make Receptionist
+                            </Button>
+                        </Link>
+                    </Box>
+                }
                 <br />
             </Box>
-
-            {/* <List>
-                {['Home', 'Add File', 'All Files', 'My Files', 'Drafts'].map((text, index) => (
-                    <ListItem button key={text}>
-                        <ListItemIcon>
-                            {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                        </ListItemIcon>
-                        <ListItemText primary={text} />
-                    </ListItem>
-                ))}
-            </List> */}
 
         </div >
     );
@@ -190,6 +191,14 @@ function Dashboard(props) {
 
                         <Route path={`${path}/addFile`}>
                             <AddFile></AddFile>
+                        </Route>
+
+                        <Route path={`${path}/make-receptionist`}>
+                            <MakeReceptionist></MakeReceptionist>
+                        </Route>
+
+                        <Route path={`${path}/drop`}>
+                            <Drop></Drop>
                         </Route>
                     </Switch>
 

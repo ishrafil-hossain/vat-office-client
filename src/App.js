@@ -11,7 +11,6 @@ import PrivateRoute from './Pages/Home/Login/PrivateRoute/PrivateRoute';
 import AddFile from './Pages/Dashboard/AddFile/AddFile';
 
 
-
 function App() {
   return (
     <AuthProvider>

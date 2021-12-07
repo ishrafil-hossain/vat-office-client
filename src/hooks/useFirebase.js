@@ -9,22 +9,24 @@ const useFirebase = () => {
     const [user, setUser] = useState({});
     const [isLoading, setIsLoading] = useState(true);
     const [authError, setAuthError] = useState('');
+    const [receptionist, setReceiptionist] = useState(false);
 
     const auth = getAuth();
 
     // User registration 
-    const registerUser = (email, password, name, history) => {
+    const registerUser = (email, password, name, department, history) => {
         setIsLoading(true);
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 setAuthError('');
-                const newUser = { email, displayName: name };
+                const newUser = { email, displayName: name, department: department };
                 setUser(newUser);
                 // save user to the database 
-                saveUser(email, name);
+                saveUser(email, name, department);
                 // send name to firebase after creation 
                 updateProfile(auth.currentUser, {
-                    displayName: name
+                    displayName: name,
+                    department: department
                 }).then(() => {
                 }).catch((error) => {
                 });
@@ -70,6 +72,13 @@ const useFirebase = () => {
     }, [])
 
 
+    // receiptionist checker 
+    useEffect(() => {
+        fetch(`http://localhost:5000/users/${user.email}`)
+            .then(res => res.json())
+            .then(data => setReceiptionist(data.receptionist))
+    }, [user.email])
+
 
     // User Logout 
     const logout = () => {
@@ -82,8 +91,8 @@ const useFirebase = () => {
             .finally(() => setIsLoading(false));
     }
 
-    const saveUser = (email, displayName) => {
-        const user = { email, displayName }
+    const saveUser = (email, displayName, department) => {
+        const user = { email, displayName, department }
         fetch('http://localhost:5000/users', {
             method: 'POST',
             headers: {
@@ -100,6 +109,7 @@ const useFirebase = () => {
         user,
         isLoading,
         authError,
+        receptionist,
         registerUser,
         loginUser,
         logout

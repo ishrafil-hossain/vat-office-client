@@ -1,4 +1,4 @@
-import { Alert, Button, CircularProgress, Container, Grid, TextField, Typography } from '@mui/material';
+import { Alert, Button, CircularProgress, Container, FormControl, Grid, InputLabel, MenuItem, Select, TextField, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import login from '../../../../images/banner.jpg';
 import { Box } from '@mui/system';
@@ -14,6 +14,11 @@ const varticatCenter = {
 const Register = () => {
     const [registerData, setRegisterData] = useState();
     const { user, registerUser, isLoading, authError } = useAuth();
+    const [department, setDepartment] = useState('');
+
+    const handleChange = (event) => {
+        setDepartment(event.target.value);
+    };
 
     const history = useHistory();
 
@@ -31,7 +36,7 @@ const Register = () => {
             alert('your password did not match');
         }
 
-        registerUser(registerData.email, registerData.password, registerData.name, history);
+        registerUser(registerData.email, registerData.password, registerData.name, registerData.department, history);
     }
     return (
         <div>
@@ -57,6 +62,27 @@ const Register = () => {
                                     id="standard-basic-name"
                                     label="Your Name"
                                     variant="standard" />
+
+                                <FormControl variant="standard" sx={{ width: 1, m: 1 }}>
+                                    <InputLabel id="demo-simple-select-standard-label">department</InputLabel>
+                                    <Select
+                                        labelId="demo-simple-select-standard-label"
+                                        id="demo-simple-select-standard"
+                                        name="department"
+                                        onBlur={handleOnBlur}
+                                        value={department}
+                                        onChange={handleChange}
+                                        label="department"
+                                    >
+                                        <MenuItem value="Department-A">Department-A</MenuItem>
+                                        <MenuItem value="Department-B">Department-B</MenuItem>
+                                        <MenuItem value="Department-C">Department-C</MenuItem>
+                                        <MenuItem value="Department-D">Department-D</MenuItem>
+                                        <MenuItem value="Department-E">Department-E</MenuItem>
+                                        <MenuItem value="Receptionist">Receptionist</MenuItem>
+                                    </Select>
+                                </FormControl>
+
                                 <TextField
                                     required
                                     sx={{ width: 1, m: 1 }}

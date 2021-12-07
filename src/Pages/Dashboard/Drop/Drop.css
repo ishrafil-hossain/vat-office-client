@@ -1,0 +1,18 @@
+.App {
+    font-family: sans-serif;
+    text-align: center;
+  }
+  
+  .Container {
+    display: flex;
+    flex-direction: column;
+  
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .Container select {
+    width: 150px;
+    margin-bottom: 10px;
+  }
+  

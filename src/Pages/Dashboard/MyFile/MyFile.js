@@ -13,8 +13,11 @@ const MyFile = () => {
     const { user } = useAuth();
     const [myFiles, setMyFiles] = useState([]);
 
+    console.log(user)
+
+
     useEffect(() => {
-        const url = `http://localhost:5000/files?email=${user.email}`;
+        const url = `http://localhost:5000/files?name=${user.displayName}`;
         fetch(url)
             .then(res => res.json())
             .then(data => setMyFiles(data))
@@ -27,8 +30,10 @@ const MyFile = () => {
                     <TableHead>
                         <TableRow>
                             <TableCell align="center">File Name</TableCell>
-                            <TableCell align="center">Person Email</TableCell>
+                            <TableCell align="center">Department</TableCell>
+                            <TableCell align="center">Company Name</TableCell>
                             <TableCell align="center">Person Name</TableCell>
+                            <TableCell align="center">Date and Time</TableCell>
                             <TableCell align="center">Action</TableCell>
 
                         </TableRow>
@@ -40,8 +45,10 @@ const MyFile = () => {
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                             >
                                 <TableCell align="center">{row.fileName}</TableCell>
-                                <TableCell align="center">{row.personEmail}</TableCell>
+                                <TableCell align="center">{row.department}</TableCell>
+                                <TableCell align="center">{row.company}</TableCell>
                                 <TableCell align="center">{row.personName}</TableCell>
+                                <TableCell align="center">{row.date}</TableCell>
                                 <TableCell align="center">
                                     <Button sx={{ color: 'green', fontWeight: 700 }}>Update</Button>
                                 </TableCell>

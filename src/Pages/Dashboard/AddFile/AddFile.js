@@ -1,7 +1,7 @@
-import { Button, Container, Grid, TextField, Typography } from '@mui/material';
+import { Button, Container, FormControl, Grid, InputLabel, MenuItem, Select, TextField, Typography } from '@mui/material';
 import { Box } from '@mui/system';
-import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import useAuth from '../../../hooks/useAuth';
 
 const varticatCenter = {
     display: 'flex',
@@ -9,10 +9,27 @@ const varticatCenter = {
     height: 500
 }
 
+const time_And_Date = new Date().toLocaleString();
+
 const AddFile = () => {
+    const { user } = useAuth();
+    const [departments, setDepartments] = useState([]);
+
+    useEffect(() => {
+        const url = `http://localhost:5000/users`;
+
+        fetch(url)
+            .then(res => res.json())
+            .then(data => setDepartments(data))
+    }, [user])
+
+    // console.log(departments[0].department)
+
     const initialInfo = {
         fileName: '',
-        personEmail: '',
+        department: '',
+        company: '',
+        // date_time: '',
         personName: ''
     }
     const [fileInfo, setFileInfo] = useState(initialInfo);
@@ -21,6 +38,7 @@ const AddFile = () => {
         const field = e.target.name;
         const value = e.target.value;
         const newFileData = { ...fileInfo };
+        // console.log(newFileData)
         newFileData[field] = value;
         setFileInfo(newFileData);
 
@@ -29,8 +47,10 @@ const AddFile = () => {
     const handleFileAdd = e => {
         // collect data 
         const files = {
-            ...fileInfo
+            ...fileInfo,
+            date: new Date().toLocaleString()
         }
+        // console.log(files)
 
         // send to the server 
         fetch('http://localhost:5000/files', {
@@ -78,20 +98,57 @@ const AddFile = () => {
                                 <TextField
                                     sx={{ width: 1, m: 1 }}
                                     required
-                                    name="personEmail"
+                                    name="company"
                                     onBlur={handleOnBlur}
                                     id="standard-basic"
-                                    label="Person E-mail"
+                                    label="Company Name"
                                     variant="standard" />
 
+
                                 <TextField
-                                    required
+                                    disabled
                                     sx={{ width: 1, m: 1 }}
-                                    name="personName"
+                                    defaultValue={time_And_Date}
+                                    name="date_time"
                                     onBlur={handleOnBlur}
                                     id="standard-basic-person-name"
-                                    label="Person Name"
+                                    label="Time and Date"
                                     variant="standard" />
+
+                                <FormControl variant="standard" sx={{ width: 1, m: 1 }}>
+                                    <InputLabel id="demo-simple-select-standard-label">department</InputLabel>
+                                    <Select
+                                        labelId="demo-simple-select-standard-label"
+                                        id="demo-simple-select-standard"
+                                        name="department"
+                                        onBlur={handleOnBlur}
+                                        // value={department}
+                                        label="department"
+                                    >
+                                        <MenuItem value="Department-A">Department-A</MenuItem>
+                                        <MenuItem value="Department-B">Department-B</MenuItem>
+                                        <MenuItem value="Department-C">Department-C</MenuItem>
+                                        <MenuItem value="Department-D">Department-D</MenuItem>
+                                        <MenuItem value="Department-E">Department-E</MenuItem>
+                                    </Select>
+                                </FormControl>
+
+                                <FormControl variant="standard" sx={{ width: 1, m: 1 }}>
+                                    <InputLabel id="demo-simple-select-standard-label">Name</InputLabel>
+                                    <Select
+                                        labelId="demo-simple-select-standard-label"
+                                        id="demo-simple-select-standard"
+                                        name="personName"
+                                        onBlur={handleOnBlur}
+                                        // value={department}
+                                        label="department">
+                                        {
+                                            departments.map(department => <MenuItem value={department.displayName}>{department.displayName}</MenuItem>)
+                                        }
+
+                                    </Select>
+                                </FormControl>
+
 
                                 <Button
                                     sx={{ width: 1, m: 1 }}

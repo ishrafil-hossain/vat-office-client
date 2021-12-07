@@ -61,8 +61,9 @@ const AllFile = () => {
                     <TableHead>
                         <TableRow>
                             <TableCell align="center">File Name</TableCell>
-                            <TableCell align="center">Person Email</TableCell>
+                            <TableCell align="center">Company Name</TableCell>
                             <TableCell align="center">Person Name</TableCell>
+                            <TableCell align="center">Department</TableCell>
                             <TableCell align="center">Action</TableCell>
 
                         </TableRow>
@@ -76,14 +77,21 @@ const AllFile = () => {
                             ) {
                                 return val
                             }
+                            else if (val.company.toLowerCase().includes(search.toLowerCase())
+                            ) {
+                                return val
+                            }
+
+
                         }).map((row) => (
                             <TableRow
                                 key={row._id}
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                             >
                                 <TableCell align="center">{row.fileName}</TableCell>
-                                <TableCell align="center">{row.personEmail}</TableCell>
+                                <TableCell align="center">{row.company}</TableCell>
                                 <TableCell align="center">{row.personName}</TableCell>
+                                <TableCell align="center">{row.department}</TableCell>
                                 <TableCell align="center">
                                     <Button
                                         onClick={() => handleDelete(row._id)}
