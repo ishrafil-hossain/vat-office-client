@@ -12,7 +12,7 @@ const MakeReceptionist = () => {
     const handleAdminSubmit = e => {
         alert('You have successfully added an receiptionist')
         const user = { email };
-        fetch('http://localhost:5000/users/receptionist', {
+        fetch('https://shrouded-spire-42050.herokuapp.com/users/receptionist', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'

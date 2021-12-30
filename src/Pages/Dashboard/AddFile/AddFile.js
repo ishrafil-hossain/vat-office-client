@@ -16,7 +16,7 @@ const AddFile = () => {
     const [departments, setDepartments] = useState([]);
 
     useEffect(() => {
-        const url = `http://localhost:5000/users`;
+        const url = `https://shrouded-spire-42050.herokuapp.com/users`;
 
         fetch(url)
             .then(res => res.json())
@@ -53,7 +53,7 @@ const AddFile = () => {
         // console.log(files)
 
         // send to the server 
-        fetch('http://localhost:5000/files', {
+        fetch('https://shrouded-spire-42050.herokuapp.com/files', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

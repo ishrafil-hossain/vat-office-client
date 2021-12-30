@@ -18,7 +18,7 @@ const AllFile = () => {
     const [search, setSearch] = useState('');
 
     useEffect(() => {
-        fetch('http://localhost:5000/files/user')
+        fetch('https://shrouded-spire-42050.herokuapp.com/files/user')
             .then(res => res.json())
             .then(data => setAllFiles(data))
     }, []);
@@ -27,7 +27,7 @@ const AllFile = () => {
     const handleDelete = id => {
         const confirm = window.confirm('Are You Sure To Delete This File...?');
         if (confirm) {
-            fetch(`http://localhost:5000/files/user/${id}`, {
+            fetch(`https://shrouded-spire-42050.herokuapp.com/files/user/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())

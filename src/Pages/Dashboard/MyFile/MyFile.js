@@ -45,7 +45,7 @@ const MyFile = () => {
         console.log(files)
 
         // send to the server 
-        fetch('http://localhost:5000/files/receiption', {
+        fetch('https://shrouded-spire-42050.herokuapp.com/files/receiption', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -66,7 +66,7 @@ const MyFile = () => {
 
 
     useEffect(() => {
-        const url = `http://localhost:5000/files?name=${user.displayName}`;
+        const url = `https://shrouded-spire-42050.herokuapp.com/files?name=${user.displayName}`;
         fetch(url)
             .then(res => res.json())
             .then(data => setMyFiles(data))
