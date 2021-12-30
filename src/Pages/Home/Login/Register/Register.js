@@ -2,7 +2,7 @@ import { Alert, Button, CircularProgress, Container, FormControl, Grid, InputLab
 import React, { useState } from 'react';
 import login from '../../../../images/banner.jpg';
 import { Box } from '@mui/system';
-import { NavLink, useHistory } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import useAuth from '../../../../hooks/useAuth';
 
 const varticatCenter = {
@@ -20,7 +20,7 @@ const Register = () => {
         setDepartment(event.target.value);
     };
 
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const handleOnBlur = e => {
         const field = e.target.name;
@@ -36,7 +36,7 @@ const Register = () => {
             alert('your password did not match');
         }
 
-        registerUser(registerData.email, registerData.password, registerData.name, registerData.department, history);
+        registerUser(registerData.email, registerData.password, registerData.name, registerData.department, navigate);
     }
     return (
         <div>

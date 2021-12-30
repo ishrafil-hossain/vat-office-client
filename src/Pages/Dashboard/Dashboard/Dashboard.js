@@ -9,18 +9,14 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import MyFile from '../MyFile/MyFile';
-import AllFile from '../AllFile/AllFile';
-import AddFile from '../AddFile/AddFile';
 import useAuth from '../../../hooks/useAuth';
-import { BrowserRouter as Router, Switch, Route, Link, useRouteMatch } from "react-router-dom";
+import { Outlet, Link } from "react-router-dom";
 import { Button } from '@mui/material';
 import DriveFileMoveIcon from '@mui/icons-material/DriveFileMove';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import DescriptionIcon from '@mui/icons-material/Description';
 import HomeIcon from '@mui/icons-material/Home';
-import Drop from '../Drop/Drop';
-import MakeReceptionist from '../MakeReceptionist/MakeReceptionist';
+
 
 
 const drawerWidth = 200;
@@ -30,7 +26,6 @@ function Dashboard(props) {
     const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
 
-    let { path, url } = useRouteMatch();
 
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
@@ -52,7 +47,7 @@ function Dashboard(props) {
                     !receptionist && <Box>
                         <Link
                             style={{ textDecoration: 'none', color: 'black' }}
-                            to={`${url}/dashboard`}>
+                            to={`/dashboard`}>
                             <Button color='inherit'>
                                 <HomeIcon sx={{ color: 'crimson' }} />
                                 Home
@@ -62,7 +57,7 @@ function Dashboard(props) {
 
                         <Link
                             style={{ textDecoration: 'none', color: 'black' }}
-                            to={`${url}/myFile`}>
+                            to={`/dashboard/myFile`}>
                             <Button color='inherit'>
                                 <DescriptionIcon sx={{ color: 'GoldenRod' }} />
                                 My File
@@ -72,7 +67,7 @@ function Dashboard(props) {
 
                         <Link
                             style={{ textDecoration: 'none', color: 'black' }}
-                            to={`${url}/allFile`}>
+                            to={`/dashboard/allFile`}>
                             <Button color='inherit'>
                                 <DriveFileMoveIcon sx={{ color: 'GoldenRod' }} />
                                 All File
@@ -86,7 +81,7 @@ function Dashboard(props) {
                     receptionist && <Box>
                         <Link
                             style={{ textDecoration: 'none', color: 'black' }}
-                            to={`${url}/addFile`}>
+                            to={`/dashboard/addFile`}>
                             <Button color='inherit'>
                                 <AddBoxIcon sx={{ color: 'Peru' }} />
                                 Add File
@@ -95,7 +90,7 @@ function Dashboard(props) {
 
                         <Link
                             style={{ textDecoration: 'none', color: 'black' }}
-                            to={`${url}/make-receptionist`}>
+                            to={`/dashboard/make-receptionist`}>
                             <Button color='inherit'>
                                 <AddBoxIcon sx={{ color: 'Peru' }} />
                                 Make Receptionist
@@ -177,30 +172,7 @@ function Dashboard(props) {
             >
                 <Toolbar />
                 <Typography paragraph>
-                    <Switch>
-                        <Route exact path={path}>
-
-                        </Route>
-                        <Route path={`${path}/myFile`}>
-                            <MyFile></MyFile>
-                        </Route>
-
-                        <Route path={`${path}/allFile`}>
-                            <AllFile></AllFile>
-                        </Route>
-
-                        <Route path={`${path}/addFile`}>
-                            <AddFile></AddFile>
-                        </Route>
-
-                        <Route path={`${path}/make-receptionist`}>
-                            <MakeReceptionist></MakeReceptionist>
-                        </Route>
-
-                        <Route path={`${path}/drop`}>
-                            <Drop></Drop>
-                        </Route>
-                    </Switch>
+                    <Outlet></Outlet>
 
                 </Typography>
 
