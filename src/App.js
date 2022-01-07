@@ -14,6 +14,7 @@ import AllFile from './Pages/Dashboard/AllFile/AllFile';
 import MakeReceptionist from './Pages/Dashboard/MakeReceptionist/MakeReceptionist';
 import Drop from './Pages/Dashboard/Drop/Drop';
 import UpdateUser from './Pages/Dashboard/UpdateUser/UpdateUser';
+import Home1 from './Pages/Dashboard/Home/Home';
 
 
 function App() {
@@ -40,7 +41,10 @@ function App() {
 
           {/* dashboard nested route starting  */}
           <Route path="/dashboard" element={<PrivateRoute> <Dashboard /></PrivateRoute>}>
-            <Route exact path="/dashboard">
+            <Route exact path="/dashboard" element={<Home1 />}>
+
+            </Route>
+            <Route exact path="/dashboard/home" element={<Home1 />}>
 
             </Route>
             <Route path={`/dashboard/myFile`} element={<MyFile />}>

@@ -24,10 +24,24 @@ const UpdateUser = () => {
             .then(data => setUsers(data))
     }, [])
 
+
     const handleFileSend = e => {
 
     }
 
+    const handleOnBlur = e => {
+        var selected = e.target.value;
+        // console.log(selected)
+
+        users.filter(checkAdult)
+
+        function checkAdult(user) {
+            if (user.department == selected) {
+                const result = user.displayName;
+                console.log(result);
+            }
+        }
+    }
 
     return (
         <div>
@@ -75,13 +89,13 @@ const UpdateUser = () => {
                                             label="Time and Date"
                                             variant="standard" />
 
-                                        <FormControl variant="standard" sx={{ width: 1, m: 1 }}>
+                                        {/* <FormControl variant="standard" sx={{ width: 1, m: 1 }}>
                                             <InputLabel id="demo-simple-select-standard-label">department</InputLabel>
                                             <Select
                                                 labelId="demo-simple-select-standard-label"
                                                 id="demo-simple-select-standard"
                                                 name="department"
-                                                // onBlur={handleOnBlur}
+                                                onBlur={handleOnBlur}
                                                 // value={department}
                                                 label="department"
                                             >
@@ -91,6 +105,23 @@ const UpdateUser = () => {
                                                 <MenuItem value="Department-D">Department-D</MenuItem>
                                                 <MenuItem value="Department-E">Department-E</MenuItem>
                                                 <MenuItem value="Department-E">Receiptionist</MenuItem>
+                                            </Select>
+                                        </FormControl> */}
+
+                                        <FormControl variant="standard" sx={{ width: 1, m: 1 }}>
+                                            <InputLabel id="demo-simple-select-standard-label">Name</InputLabel>
+                                            <Select
+                                                labelId="demo-simple-select-standard-label"
+                                                id="demo-simple-select-standard"
+                                                name="personName"
+                                                onBlur={handleOnBlur}
+                                                // value={department}
+                                                label="department">
+                                                {
+                                                    users.map(user => <MenuItem value={user.department}>{user.department}</MenuItem>)
+
+                                                }
+
                                             </Select>
                                         </FormControl>
 
