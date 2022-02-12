@@ -53,7 +53,7 @@ const UpdateUser = () => {
                                 sx={{ width: 1, m: 1 }}
                                 variant="subtitle1"
                                 gutterBottom component="div">
-                                Add a file
+                                Transfer Your file
                             </Typography>
                             <div>
                                 {file.map((row) => (
