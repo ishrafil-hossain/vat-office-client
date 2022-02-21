@@ -24,9 +24,41 @@ const UpdateUser = () => {
             .then(data => setUsers(data))
     }, [])
 
+    const [fileInfo, setFileInfo] = useState({});
+
+
+    const handleChangeDept = e => {
+        const updateDept = e.target.value;
+        const updatedUser = { ...fileInfo };
+        updatedUser.department = updateDept;
+        setFileInfo(updatedUser);
+    }
+    const handleChangePersonName = e => {
+        const updatePersonName = e.target.value;
+        const updatedUser = { ...fileInfo };
+        updatedUser.personName = updatePersonName;
+        setFileInfo(updatedUser);
+
+    }
 
     const handleFileSend = e => {
 
+        const url = `http://localhost:5000/users/${id}`;
+        fetch(url, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(fileInfo)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.modifiedCount > 0) {
+                    alert('You have successfully send a file');
+                    setFileInfo({})
+                }
+            })
+        e.preventDefault();
     }
 
     const handleOnBlur = e => {
@@ -38,10 +70,11 @@ const UpdateUser = () => {
         function checkAdult(user) {
             if (user.department == selected) {
                 const result = user.displayName;
-                console.log(result);
+                // console.log(result);
             }
         }
     }
+    // console.log('users', users)
 
     return (
         <div>
@@ -62,7 +95,7 @@ const UpdateUser = () => {
                                             disabled
                                             sx={{ width: 1, m: 1 }}
                                             name="fileName"
-                                            // onBlur={handleOnBlur}
+                                            // onChange={handleOnChange}
                                             defaultValue={row.fileName}
                                             id="standard-basic-file-name"
                                             label="File Name"
@@ -73,7 +106,7 @@ const UpdateUser = () => {
                                             disabled
                                             name="company"
                                             defaultValue={row.company}
-                                            // onBlur={handleOnBlur}
+                                            // onChange={handleOnChange}
                                             id="standard-basic"
                                             label="Company Name"
                                             variant="standard" />
@@ -84,36 +117,19 @@ const UpdateUser = () => {
                                             sx={{ width: 1, m: 1 }}
                                             defaultValue={time_And_Date}
                                             name="date_time"
-                                            // onBlur={handleOnBlur}
+                                            // onChange={handleOnChange}
                                             id="standard-basic-person-name"
                                             label="Time and Date"
                                             variant="standard" />
 
-                                        {/* <FormControl variant="standard" sx={{ width: 1, m: 1 }}>
-                                            <InputLabel id="demo-simple-select-standard-label">department</InputLabel>
-                                            <Select
-                                                labelId="demo-simple-select-standard-label"
-                                                id="demo-simple-select-standard"
-                                                name="department"
-                                                onBlur={handleOnBlur}
-                                                // value={department}
-                                                label="department"
-                                            >
-                                                <MenuItem value="Department-A">Department-A</MenuItem>
-                                                <MenuItem value="Department-B">Department-B</MenuItem>
-                                                <MenuItem value="Department-C">Department-C</MenuItem>
-                                                <MenuItem value="Department-D">Department-D</MenuItem>
-                                                <MenuItem value="Department-E">Department-E</MenuItem>
-                                                <MenuItem value="Department-E">Receiptionist</MenuItem>
-                                            </Select>
-                                        </FormControl> */}
 
                                         <FormControl variant="standard" sx={{ width: 1, m: 1 }}>
-                                            <InputLabel id="demo-simple-select-standard-label">Name</InputLabel>
+                                            <InputLabel id="demo-simple-select-standard-label">Department</InputLabel>
                                             <Select
                                                 labelId="demo-simple-select-standard-label"
                                                 id="demo-simple-select-standard"
-                                                name="personName"
+                                                onChange={handleChangeDept}
+                                                name="department"
                                                 onBlur={handleOnBlur}
                                                 // value={department}
                                                 label="department">
@@ -131,6 +147,7 @@ const UpdateUser = () => {
                                                 labelId="demo-simple-select-standard-label"
                                                 id="demo-simple-select-standard"
                                                 name="personName"
+                                                onChange={handleChangePersonName}
                                                 // onBlur={handleOnBlur}
                                                 // value={department}
                                                 label="department">
