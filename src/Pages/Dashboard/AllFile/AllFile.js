@@ -66,7 +66,10 @@ const AllFile = () => {
                             <TableCell align="center">Company Name</TableCell>
                             <TableCell align="center">Person Name</TableCell>
                             <TableCell align="center">Department</TableCell>
-                            <TableCell align="center">Action</TableCell>
+                            {
+                                receptionist && <TableCell align="center">Action</TableCell>
+                            }
+
 
                         </TableRow>
                     </TableHead>
