@@ -11,14 +11,14 @@ const Update = () => {
     const [users, setUsers] = useState(['']);
     const { id } = useParams();
     useEffect(() => {
-        const url = https://shrouded-spire-42050.herokuapp.com/files/update/${id};
+        const url =` https://shrouded-spire-42050.herokuapp.com/files/update/${id}`;
         fetch(url)
             .then(res => res.json())
             .then(data => setFile(data))
     }, [])
 
     useEffect(() => {
-        const url = https://shrouded-spire-42050.herokuapp.com/users;
+        const url = `https://shrouded-spire-42050.herokuapp.com/users`;
         fetch(url)
             .then(res => res.json())
             .then(data => setUsers(data))
