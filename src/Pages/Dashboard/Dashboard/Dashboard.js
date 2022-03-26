@@ -79,6 +79,18 @@ function Dashboard(props) {
 
                 {
                     receptionist && <Box>
+                        {/*start new  */}
+                        <Link
+                            style={{ textDecoration: 'none', color: 'black' }}
+                            to={`/dashboard/allFile`}>
+                            <Button color='inherit'>
+                                <DriveFileMoveIcon sx={{ color: 'GoldenRod' }} />
+                                All File
+                            </Button>
+                        </Link>
+                        <br />
+                        {/* end new  */}
+
                         <Link
                             style={{ textDecoration: 'none', color: 'black' }}
                             to={`/dashboard/addFile`}>
