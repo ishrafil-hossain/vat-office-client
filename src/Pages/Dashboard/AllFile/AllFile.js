@@ -70,6 +70,7 @@ const AllFile = () => {
                                 receptionist && <TableCell align="center">Action</TableCell>
                             }
 
+
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -104,7 +105,7 @@ const AllFile = () => {
                                                 <MenuItem>
                                                     <NavLink
                                                         style={{ textDecoration: 'none', color: 'white', }}
-                                                        to={`/dashboard/update-user/${row._id}`}>
+                                                        to={`/dashboard/update/${row._id}`}>
                                                         <Button variant="contained" style={{ backgroundColor: 'green' }}>
                                                             Update
                                                         </Button>
