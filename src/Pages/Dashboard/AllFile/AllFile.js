@@ -14,6 +14,7 @@ import { NavLink } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
 
 
+
 const AllFile = () => {
     const [allFiles, setAllFiles] = useState([]);
     const [search, setSearch] = useState('');
@@ -66,9 +67,7 @@ const AllFile = () => {
                             <TableCell align="center">Company Name</TableCell>
                             <TableCell align="center">Person Name</TableCell>
                             <TableCell align="center">Department</TableCell>
-                            {
-                                receptionist && <TableCell align="center">Action</TableCell>
-                            }
+                            <TableCell align="center">Action</TableCell>
 
 
                         </TableRow>
