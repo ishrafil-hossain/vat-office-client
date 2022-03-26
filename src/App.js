@@ -64,7 +64,11 @@ function App() {
 
             <Route path={`/dashboard/update-user/:id`} element={<UpdateUser />}>
             </Route>
+            <Route
+              path={`/dashboard/update/:id`}
+              element={<Update />}>
 
+            </Route>s
           </Route>
           {/* dashboard nested route ending  */}
 
