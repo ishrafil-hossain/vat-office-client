@@ -6,17 +6,19 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { Button, TextField } from '@mui/material';
+import { Button, MenuItem, Select, TextField } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { Box } from '@mui/system';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { NavLink } from 'react-router-dom';
+import useAuth from '../../../hooks/useAuth';
 
 
 
 const AllFile = () => {
     const [allFiles, setAllFiles] = useState([]);
     const [search, setSearch] = useState('');
-
+    const { receptionist } = useAuth();
 
     useEffect(() => {
         fetch('https://shrouded-spire-42050.herokuapp.com/files/user')
@@ -95,11 +97,34 @@ const AllFile = () => {
                                 <TableCell align="center">{row.personName}</TableCell>
                                 <TableCell align="center">{row.department}</TableCell>
                                 <TableCell align="center">
-                                    <Button
-                                        onClick={() => handleDelete(row._id)}
-                                        sx={{ color: 'red' }}>
-                                        <DeleteIcon />
-                                    </Button>
+                                    {
+                                        receptionist && <TableCell align="center">
+
+
+                                            <Select>
+                                                <MenuItem>
+                                                    <NavLink
+                                                        style={{ textDecoration: 'none', color: 'white', }}
+
+                                                        to={`/dashboard/update/${row._id}`}>
+
+                                                        <Button variant="contained" style={{ backgroundColor: 'green' }}>
+                                                            Update
+                                                        </Button>
+                                                    </NavLink>
+                                                </MenuItem>
+                                                <MenuItem>
+                                                    <Button variant="contained"
+                                                        onClick={() => handleDelete(row._id)}
+                                                        style={{ backgroundColor: 'red' }}>
+                                                        Delete
+                                                    </Button>
+                                                </MenuItem>
+                                            </Select>
+
+                                        </TableCell>
+                                    }
+
                                 </TableCell>
 
 
