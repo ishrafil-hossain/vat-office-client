@@ -26,6 +26,27 @@ const Update = () => {
 
     const [fileInfo, setFileInfo] = useState({});
 
+const handleChangeFileName = e => {
+    const updateFileName = e.target.value;
+    const updatedUser = { ...fileInfo };
+    updatedUser.fileName = updateFileName;
+    setFileInfo(updatedUser);
+}
+
+const handleChangeCompany = e => {
+    const updateCompany = e.target.value;
+    const updatedUser = { ...fileInfo };
+    updatedUser.company = updateCompany;
+    setFileInfo(updatedUser);
+}
+
+const handleChangeDateAndTime = e => {
+    const updateDateAndTime = e.target.value;
+    const updatedUser = { ...fileInfo };
+    updatedUser.date_time = updateDateAndTime;
+    setFileInfo(updatedUser);
+}
+
 
     const handleChangeDept = e => {
         const updateDept = e.target.value;
@@ -41,9 +62,28 @@ const Update = () => {
 
     }
 
-    const handleFileSend = e => {
-        e.preventDefault();
-    }
+
+   const handleUpdate = e => {
+    console.log('working')
+    const url = `http://localhost:5000/users/update/${id}`;
+    fetch(url, {
+        method: 'PUT',
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify(fileInfo)
+    })
+
+        .then(res => res.json())
+        .then(data => {
+            if (data.modifiedCount > 0) {
+                alert('Successfully Update This File');
+                setFileInfo({})
+            }
+        })
+    e.preventDefault();
+}
+
 
     const handleOnBlur = e => {
         var selected = e.target.value;
@@ -74,11 +114,11 @@ const Update = () => {
                             </Typography>
                             <div>
                                 {file.map((row) => (
-                                    <form onSubmit={handleFileSend}>
+                                    <form onSubmit={handleUpdate}>
                                         <TextField
                                             sx={{ width: 1, m: 1 }}
                                             name="fileName"
-                                            // onChange={handleOnChange}
+                                            onChange={handleChangeFileName}
                                             defaultValue={row.fileName}
                                             id="standard-basic-file-name"
                                             label="File Name"
@@ -88,7 +128,7 @@ const Update = () => {
                                             sx={{ width: 1, m: 1 }}
                                             name="company"
                                             defaultValue={row.company}
-                                            // onChange={handleOnChange}
+                                            onChange={handleChangeCompany}
                                             id="standard-basic"
                                             label="Company Name"
                                             variant="standard" />
@@ -98,7 +138,7 @@ const Update = () => {
                                             sx={{ width: 1, m: 1 }}
                                             defaultValue={time_And_Date}
                                             name="date_time"
-                                            // onChange={handleOnChange}
+                                            onChange={handleChangeDateAndTime}
                                             id="standard-basic-person-name"
                                             label="Time and Date"
                                             variant="standard" />
