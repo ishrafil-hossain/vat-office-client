@@ -15,6 +15,7 @@ import MakeReceptionist from './Pages/Dashboard/MakeReceptionist/MakeReceptionis
 import Drop from './Pages/Dashboard/Drop/Drop';
 import UpdateUser from './Pages/Dashboard/UpdateUser/UpdateUser';
 import Home1 from './Pages/Dashboard/Home/Home';
+import Update from './Pages/Dashboard/Update/Update';
 
 
 function App() {
@@ -64,7 +65,11 @@ function App() {
 
             <Route path={`/dashboard/update-user/:id`} element={<UpdateUser />}>
             </Route>
+            <Route
+              path={`/dashboard/update/:id`}
+              element={<Update />}>
 
+            </Route>s
           </Route>
           {/* dashboard nested route ending  */}
 

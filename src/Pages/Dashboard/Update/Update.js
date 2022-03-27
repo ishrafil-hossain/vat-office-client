@@ -6,12 +6,12 @@ import { useParams } from 'react-router-dom';
 
 const time_And_Date = new Date().toLocaleString();
 
-const UpdateUser = () => {
+const Update = () => {
     const [file, setFile] = useState([]);
     const [users, setUsers] = useState(['']);
     const { id } = useParams();
     useEffect(() => {
-        const url = `https://shrouded-spire-42050.herokuapp.com/files/update/${id}`;
+        const url =` https://shrouded-spire-42050.herokuapp.com/files/update/${id}`;
         fetch(url)
             .then(res => res.json())
             .then(data => setFile(data))
@@ -25,6 +25,27 @@ const UpdateUser = () => {
     }, [])
 
     const [fileInfo, setFileInfo] = useState({});
+
+const handleChangeFileName = e => {
+    const updateFileName = e.target.value;
+    const updatedUser = { ...fileInfo };
+    updatedUser.fileName = updateFileName;
+    setFileInfo(updatedUser);
+}
+
+const handleChangeCompany = e => {
+    const updateCompany = e.target.value;
+    const updatedUser = { ...fileInfo };
+    updatedUser.company = updateCompany;
+    setFileInfo(updatedUser);
+}
+
+const handleChangeDateAndTime = e => {
+    const updateDateAndTime = e.target.value;
+    const updatedUser = { ...fileInfo };
+    updatedUser.date_time = updateDateAndTime;
+    setFileInfo(updatedUser);
+}
 
 
     const handleChangeDept = e => {
@@ -41,25 +62,28 @@ const UpdateUser = () => {
 
     }
 
-    const handleFileSend = e => {
 
-        const url = `http://localhost:5000/users/${id}`;
-        fetch(url, {
-            method: 'PUT',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(fileInfo)
+   const handleUpdate = e => {
+    console.log('working')
+    const url = `http://localhost:5000/users/update/${id}`;
+    fetch(url, {
+        method: 'PUT',
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify(fileInfo)
+    })
+
+        .then(res => res.json())
+        .then(data => {
+            if (data.modifiedCount > 0) {
+                alert('Successfully Update This File');
+                setFileInfo({})
+            }
         })
-            .then(res => res.json())
-            .then(data => {
-                if (data.modifiedCount > 0) {
-                    alert('You have successfully send a file');
-                    setFileInfo({})
-                }
-            })
-        e.preventDefault();
-    }
+    e.preventDefault();
+}
+
 
     const handleOnBlur = e => {
         var selected = e.target.value;
@@ -83,19 +107,18 @@ const UpdateUser = () => {
                     <Grid item xs={12} md={6}>
                         <Box>
                             <Typography
-                                sx={{ width: 1, m: 1 }}
+                                sx={{ width: 1, m: 1, color: 'blue' }}
                                 variant="subtitle1"
                                 gutterBottom component="div">
-                                Transfer Your file
+                                Update The File
                             </Typography>
                             <div>
                                 {file.map((row) => (
-                                    <form onSubmit={handleFileSend}>
+                                    <form onSubmit={handleUpdate}>
                                         <TextField
-                                            disabled
                                             sx={{ width: 1, m: 1 }}
                                             name="fileName"
-                                            // onChange={handleOnChange}
+                                            onChange={handleChangeFileName}
                                             defaultValue={row.fileName}
                                             id="standard-basic-file-name"
                                             label="File Name"
@@ -103,21 +126,19 @@ const UpdateUser = () => {
 
                                         <TextField
                                             sx={{ width: 1, m: 1 }}
-                                            disabled
                                             name="company"
                                             defaultValue={row.company}
-                                            // onChange={handleOnChange}
+                                            onChange={handleChangeCompany}
                                             id="standard-basic"
                                             label="Company Name"
                                             variant="standard" />
 
 
                                         <TextField
-                                            disabled
                                             sx={{ width: 1, m: 1 }}
                                             defaultValue={time_And_Date}
                                             name="date_time"
-                                            // onChange={handleOnChange}
+                                            onChange={handleChangeDateAndTime}
                                             id="standard-basic-person-name"
                                             label="Time and Date"
                                             variant="standard" />
@@ -162,8 +183,9 @@ const UpdateUser = () => {
                                         <Button
                                             sx={{ width: 1, m: 1 }}
                                             type="submit"
+                                            color="secondary"
                                             variant="contained">
-                                            Send
+                                            Update
                                         </Button>
                                     </form>
 
@@ -179,4 +201,4 @@ const UpdateUser = () => {
     );
 };
 
-export default UpdateUser;
+export default Update;
