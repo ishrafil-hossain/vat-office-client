@@ -43,7 +43,7 @@ const UpdateUser = () => {
 
     const handleFileSend = e => {
 
-        const url = `http://localhost:5000/users/${id}`;
+        const url = `https://shrouded-spire-42050.herokuapp.com/users/${id}`;
         fetch(url, {
             method: 'PUT',
             headers: {

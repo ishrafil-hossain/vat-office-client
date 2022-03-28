@@ -11,7 +11,7 @@ const Update = () => {
     const [users, setUsers] = useState(['']);
     const { id } = useParams();
     useEffect(() => {
-        const url =` https://shrouded-spire-42050.herokuapp.com/files/update/${id}`;
+        const url = ` https://shrouded-spire-42050.herokuapp.com/files/update/${id}`;
         fetch(url)
             .then(res => res.json())
             .then(data => setFile(data))
@@ -26,26 +26,26 @@ const Update = () => {
 
     const [fileInfo, setFileInfo] = useState({});
 
-const handleChangeFileName = e => {
-    const updateFileName = e.target.value;
-    const updatedUser = { ...fileInfo };
-    updatedUser.fileName = updateFileName;
-    setFileInfo(updatedUser);
-}
+    const handleChangeFileName = e => {
+        const updateFileName = e.target.value;
+        const updatedUser = { ...fileInfo };
+        updatedUser.fileName = updateFileName;
+        setFileInfo(updatedUser);
+    }
 
-const handleChangeCompany = e => {
-    const updateCompany = e.target.value;
-    const updatedUser = { ...fileInfo };
-    updatedUser.company = updateCompany;
-    setFileInfo(updatedUser);
-}
+    const handleChangeCompany = e => {
+        const updateCompany = e.target.value;
+        const updatedUser = { ...fileInfo };
+        updatedUser.company = updateCompany;
+        setFileInfo(updatedUser);
+    }
 
-const handleChangeDateAndTime = e => {
-    const updateDateAndTime = e.target.value;
-    const updatedUser = { ...fileInfo };
-    updatedUser.date_time = updateDateAndTime;
-    setFileInfo(updatedUser);
-}
+    const handleChangeDateAndTime = e => {
+        const updateDateAndTime = e.target.value;
+        const updatedUser = { ...fileInfo };
+        updatedUser.date_time = updateDateAndTime;
+        setFileInfo(updatedUser);
+    }
 
 
     const handleChangeDept = e => {
@@ -63,26 +63,26 @@ const handleChangeDateAndTime = e => {
     }
 
 
-   const handleUpdate = e => {
-    console.log('working')
-    const url = `http://localhost:5000/users/update/${id}`;
-    fetch(url, {
-        method: 'PUT',
-        headers: {
-            'content-type': 'application/json'
-        },
-        body: JSON.stringify(fileInfo)
-    })
-
-        .then(res => res.json())
-        .then(data => {
-            if (data.modifiedCount > 0) {
-                alert('Successfully Update This File');
-                setFileInfo({})
-            }
+    const handleUpdate = e => {
+        console.log('working')
+        const url = `https://shrouded-spire-42050.herokuapp.com/users/update/${id}`;
+        fetch(url, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(fileInfo)
         })
-    e.preventDefault();
-}
+
+            .then(res => res.json())
+            .then(data => {
+                if (data.modifiedCount > 0) {
+                    alert('Successfully Update This File');
+                    setFileInfo({})
+                }
+            })
+        e.preventDefault();
+    }
 
 
     const handleOnBlur = e => {

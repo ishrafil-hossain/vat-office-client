@@ -9,7 +9,6 @@ import Paper from '@mui/material/Paper';
 import { Button, MenuItem, Select, TextField } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { Box } from '@mui/system';
-import DeleteIcon from '@mui/icons-material/Delete';
 import { NavLink } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
 
@@ -67,8 +66,10 @@ const AllFile = () => {
                             <TableCell align="center">Company Name</TableCell>
                             <TableCell align="center">Person Name</TableCell>
                             <TableCell align="center">Department</TableCell>
-                            <TableCell align="center">Action</TableCell>
 
+                            {
+                                receptionist && <TableCell align="center">Action</TableCell>
+                            }
 
                         </TableRow>
                     </TableHead>
