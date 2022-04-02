@@ -9,8 +9,20 @@ import Paper from '@mui/material/Paper';
 import useAuth from '../../../hooks/useAuth';
 import { Box, Button, Container, FormControl, Grid, InputLabel, MenuItem, Select, TextField, Typography } from '@mui/material';
 import { NavLink } from 'react-router-dom';
+import emailjs from '@emailjs/browser';
 
 const time_And_Date = new Date().toLocaleString();
+
+const sendEmail = (e, formData) => {
+    e.preventDefault();
+
+    emailjs.sendForm('EMAIL_SERVICE_ID', 'YOUR_TEMPLATE_ID', formData, 'YOUR_USER_ID')
+        .then((result) => {
+            console.log(result.text);
+        }, (error) => {
+            console.log(error.text);
+        });
+};
 
 const MyFile = () => {
     const { user } = useAuth();
@@ -55,8 +67,15 @@ const MyFile = () => {
             .then(res => res.json())
             .then(data => {
                 if (data.insertedId) {
-                    alert('You have successfully send this file');
-                    e.target.reset();
+                    const sendInfo = {
+                        from_name: user.displayName,
+                        from_email: user.email,
+                        message: `${user.displayName} has sent you a file.`,
+                    }
+                    sendEmail(e, sendInfo).then(() => {
+
+                        e.target.reset();
+                    })
                 }
             })
 

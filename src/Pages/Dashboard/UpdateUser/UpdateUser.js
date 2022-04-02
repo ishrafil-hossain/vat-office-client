@@ -3,8 +3,24 @@ import { Box } from '@mui/system';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import emailjs from '@emailjs/browser';
 
 const time_And_Date = new Date().toLocaleString();
+let sendInfo = {};
+
+const sendEmail = (e) => {
+    e.preventDefault();
+    const SID = process.env.REACT_APP_EMAIL_SERVICE_ID;
+    const TID = process.env.REACT_APP_EMAIL_TEMPLATE_ID;
+    const UID = process.env.REACT_APP_EMAIL_USER_ID;
+    console.log(SID, TID, UID);
+    emailjs.send(SID, TID, sendInfo, UID)
+        .then((result) => {
+            alert('Email Sent, Your File sent successfully!');
+        }, (error) => {
+            alert('Your File has been sent!');
+        });
+};
 
 const UpdateUser = () => {
     const [file, setFile] = useState([]);
@@ -54,6 +70,29 @@ const UpdateUser = () => {
             .then(res => res.json())
             .then(data => {
                 if (data.modifiedCount > 0) {
+                        const url = `https://shrouded-spire-42050.herokuapp.com/users`;
+                        fetch(url)
+                            .then(res => res.json())
+                            .then(data => {
+
+                                let file_email = ""
+                                console.log(data);
+                                for(let i = 0; i < data.length; i++){
+                                    if(data[i].displayName === fileInfo.personName) {
+                                        file_email = data[i].email;
+                                        break;
+                                    }
+                                }
+                                sendInfo = {
+                                    reply_to: "vatoffice@gov",
+                                    to_name: fileInfo.personName,
+                                    user_email: file_email,
+                                    message: `You have recieved a file.`
+                                }
+                                sendEmail(e);
+                            })
+
+
                     alert('You have successfully send a file');
                     setFileInfo({})
                 }
