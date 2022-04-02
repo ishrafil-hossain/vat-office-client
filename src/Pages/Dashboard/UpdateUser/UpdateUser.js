@@ -83,13 +83,11 @@ const UpdateUser = () => {
                                         break;
                                     }
                                 }
-
                                 sendInfo = {
                                     reply_to: "vatoffice@gov",
                                     to_name: fileInfo.personName,
                                     user_email: file_email,
                                     message: `You have recieved a file.`
-
                                 }
                                 sendEmail(e);
                             })
