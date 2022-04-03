@@ -1,4 +1,4 @@
-import { Alert, Button, CircularProgress, Container, FormControl, Grid, InputLabel, MenuItem, Select, TextField, Typography, Input } from '@mui/material';
+import { Alert, Button, CircularProgress, Container, FormControl, Grid, InputLabel, MenuItem, Select, TextField, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import { Box } from '@mui/system';
 import { NavLink, useNavigate } from 'react-router-dom';
@@ -152,7 +152,9 @@ const Register = () => {
                             </NavLink>
                         </form>}
 
-                        {isLoading && <CircularProgress />}
+                        {isLoading && <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                            <CircularProgress />
+                        </Box>}
                         {user?.email && <Alert onClose={() => { }}>You have successfully create an account!</Alert>}
                         {authError && <Alert severity="error">{authError}</Alert>}
 

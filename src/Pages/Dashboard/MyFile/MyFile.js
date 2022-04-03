@@ -11,6 +11,30 @@ import { Box, Button, Container, FormControl, Grid, InputLabel, MenuItem, Select
 import { NavLink } from 'react-router-dom';
 import emailjs from '@emailjs/browser';
 
+import { styled } from '@mui/material/styles';
+import tableCellClasses from '@mui/material/TableCell';
+
+
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+    [`&.${tableCellClasses.head}`]: {
+        backgroundColor: theme.palette.common.black,
+        color: theme.palette.common.white,
+    },
+    [`&.${tableCellClasses.body}`]: {
+        fontSize: 14,
+    },
+}));
+
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+    '&:nth-of-type(odd)': {
+        backgroundColor: theme.palette.action.hover,
+    },
+    // hide last border
+    '&:last-child td, &:last-child th': {
+        border: 0,
+    },
+}));
+
 const time_And_Date = new Date().toLocaleString();
 
 const sendEmail = (e, formData) => {
@@ -98,36 +122,37 @@ const MyFile = () => {
             <section>
                 <h3 style={{ textAlign: "center" }}>Total file : {myFiles.length}</h3>
                 <TableContainer component={Paper}>
-                    <Table sx={{ minWidth: 650 }} aria-label="files table" >
+                    <Table sx={{ minWidth: 700 }} aria-label="customized table">
                         <TableHead>
                             <TableRow>
-                                <TableCell align="center">File Name</TableCell>
-                                <TableCell align="center">Department</TableCell>
-                                <TableCell align="center">Company Name</TableCell>
-                                <TableCell align="center">Person Name</TableCell>
-                                <TableCell align="center">Date and Time</TableCell>
-                                <TableCell align="center">Action</TableCell>
+                                <StyledTableCell align="center">File Name</StyledTableCell>
+                                <StyledTableCell align="center">Department</StyledTableCell>
+                                <StyledTableCell align="center">Company Name</StyledTableCell>
+                                <StyledTableCell align="center">Person Name</StyledTableCell>
+                                <StyledTableCell align="center">Date and Time</StyledTableCell>
+                                <StyledTableCell align="center">Action</StyledTableCell>
                                 {/* <TableCell align="center">Work</TableCell> */}
 
                             </TableRow>
                         </TableHead>
+
                         <TableBody>
                             {myFiles.map((row) => (
-                                <TableRow
+                                <StyledTableRow
                                     key={row._id}
                                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                 >
-                                    <TableCell align="center">{row.fileName}</TableCell>
-                                    <TableCell align="center">{row.department}</TableCell>
-                                    <TableCell align="center">{row.company}</TableCell>
-                                    <TableCell align="center">{row.personName}</TableCell>
-                                    <TableCell align="center">{row.date}</TableCell>
+                                    <StyledTableCell align="center">{row.fileName}</StyledTableCell>
+                                    <StyledTableCell align="center">{row.department}</StyledTableCell>
+                                    <StyledTableCell align="center">{row.company}</StyledTableCell>
+                                    <StyledTableCell align="center">{row.personName}</StyledTableCell>
+                                    <StyledTableCell align="center">{row.date}</StyledTableCell>
 
-                                    <TableCell align="center">
+                                    <StyledTableCell align="center">
                                         <NavLink style={{ textDecoration: 'none', color: 'white', }} to={`/dashboard/update-user/${row._id}`}>
                                             <Button variant="contained" style={{ backgroundColor: 'green' }}>Send</Button>
                                         </NavLink>
-                                    </TableCell>
+                                    </StyledTableCell>
 
                                     {/* <TableCell align="center">
                                         <NavLink style={{ textDecoration: 'none', color: 'white', }} to="/dashboard/sendReceiption">
@@ -136,7 +161,7 @@ const MyFile = () => {
                                     </TableCell> */}
 
 
-                                </TableRow>
+                                </StyledTableRow>
                             ))}
                         </TableBody>
                     </Table>

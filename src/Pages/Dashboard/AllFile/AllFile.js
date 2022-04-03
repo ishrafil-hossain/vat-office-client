@@ -12,6 +12,29 @@ import { Box } from '@mui/system';
 import { NavLink } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
 
+import { styled } from '@mui/material/styles';
+import tableCellClasses from '@mui/material/TableCell';
+
+
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+    [`&.${tableCellClasses.head}`]: {
+        backgroundColor: theme.palette.common.black,
+        color: theme.palette.common.white,
+    },
+    [`&.${tableCellClasses.body}`]: {
+        fontSize: 14,
+    },
+}));
+
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+    '&:nth-of-type(odd)': {
+        backgroundColor: theme.palette.action.hover,
+    },
+    // hide last border
+    '&:last-child td, &:last-child th': {
+        border: 0,
+    },
+}));
 
 
 const AllFile = () => {
@@ -59,16 +82,16 @@ const AllFile = () => {
 
 
             <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 650 }} aria-label="files table">
+                <Table sx={{ minWidth: 700 }} aria-label="customized table">
                     <TableHead>
                         <TableRow>
-                            <TableCell align="center">File Name</TableCell>
-                            <TableCell align="center">Company Name</TableCell>
-                            <TableCell align="center">Person Name</TableCell>
-                            <TableCell align="center">Department</TableCell>
+                            <StyledTableCell align="center">File Name</StyledTableCell>
+                            <StyledTableCell align="center">Company Name</StyledTableCell>
+                            <StyledTableCell align="center">Person Name</StyledTableCell>
+                            <StyledTableCell align="center">Department</StyledTableCell>
 
                             {
-                                receptionist && <TableCell align="center">Action</TableCell>
+                                receptionist && <StyledTableCell align="center">Action</StyledTableCell>
                             }
 
                         </TableRow>
@@ -89,17 +112,17 @@ const AllFile = () => {
 
 
                         }).map((row) => (
-                            <TableRow
+                            <StyledTableRow
                                 key={row._id}
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                             >
-                                <TableCell align="center">{row.fileName}</TableCell>
-                                <TableCell align="center">{row.company}</TableCell>
-                                <TableCell align="center">{row.personName}</TableCell>
-                                <TableCell align="center">{row.department}</TableCell>
-                                <TableCell align="center">
+                                <StyledTableCell align="center">{row.fileName}</StyledTableCell>
+                                <StyledTableCell align="center">{row.company}</StyledTableCell>
+                                <StyledTableCell align="center">{row.personName}</StyledTableCell>
+                                <StyledTableCell align="center">{row.department}</StyledTableCell>
+                                <StyledTableCell align="center">
                                     {
-                                        receptionist && <TableCell align="center">
+                                        receptionist && <StyledTableCell align="center">
 
 
                                             <Select>
@@ -123,13 +146,13 @@ const AllFile = () => {
                                                 </MenuItem>
                                             </Select>
 
-                                        </TableCell>
+                                        </StyledTableCell>
                                     }
 
-                                </TableCell>
+                                </StyledTableCell>
 
 
-                            </TableRow>
+                            </StyledTableRow>
                         ))}
                     </TableBody>
                 </Table>

@@ -81,7 +81,9 @@ const Login = () => {
                             </NavLink>
                         </form>
 
-                        {isLoading && <CircularProgress />}
+                        {isLoading && <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                            <CircularProgress />
+                        </Box>}
                         {user?.email && <Alert onClose={() => { }}>You have logged in successfully!</Alert>}
                         {authError && <Alert severity="error">{authError}</Alert>}
 

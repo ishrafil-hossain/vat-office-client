@@ -70,27 +70,27 @@ const UpdateUser = () => {
             .then(res => res.json())
             .then(data => {
                 if (data.modifiedCount > 0) {
-                        const url = `https://shrouded-spire-42050.herokuapp.com/users`;
-                        fetch(url)
-                            .then(res => res.json())
-                            .then(data => {
+                    const url = `https://shrouded-spire-42050.herokuapp.com/users`;
+                    fetch(url)
+                        .then(res => res.json())
+                        .then(data => {
 
-                                let file_email = ""
-                                console.log(data);
-                                for(let i = 0; i < data.length; i++){
-                                    if(data[i].displayName === fileInfo.personName) {
-                                        file_email = data[i].email;
-                                        break;
-                                    }
+                            let file_email = ""
+                            console.log(data);
+                            for (let i = 0; i < data.length; i++) {
+                                if (data[i].displayName === fileInfo.personName) {
+                                    file_email = data[i].email;
+                                    break;
                                 }
-                                sendInfo = {
-                                    reply_to: "vatoffice@gov",
-                                    to_name: fileInfo.personName,
-                                    user_email: file_email,
-                                    message: `You have recieved a file.`
-                                }
-                                sendEmail(e);
-                            })
+                            }
+                            sendInfo = {
+                                reply_to: "vatoffice@gov",
+                                to_name: fileInfo.personName,
+                                user_email: file_email,
+                                message: `You have recieved a file.`
+                            }
+                            sendEmail(e);
+                        })
 
 
                     alert('You have successfully send a file');
@@ -117,7 +117,7 @@ const UpdateUser = () => {
 
     return (
         <div>
-            <Container>
+            <Container >
                 <Grid container spacing={2}>
                     <Grid item xs={12} md={6}>
                         <Box>
@@ -199,9 +199,10 @@ const UpdateUser = () => {
 
 
                                         <Button
-                                            sx={{ width: 1, m: 1 }}
+                                            sx={{ width: 1, m: 1, backgroundColor: '#4460AA' }}
                                             type="submit"
-                                            variant="contained">
+                                            variant="contained"
+                                            color="error">
                                             Send
                                         </Button>
                                     </form>

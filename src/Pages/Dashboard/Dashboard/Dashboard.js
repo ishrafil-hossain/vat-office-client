@@ -33,7 +33,7 @@ function Dashboard(props) {
 
     const drawer = (
         <div>
-            <Toolbar >
+            <Toolbar sx={{ backgroundColor: '#3F599E', color: 'white' }}>
                 <h3>
                     {user.displayName}
                 </h3>
@@ -119,13 +119,13 @@ function Dashboard(props) {
     const container = window !== undefined ? () => window().document.body : undefined;
 
     return (
-        <Box sx={{ display: 'flex' }}>
+        <Box sx={{ display: 'flex', backgroundColor: '' }}>
             <CssBaseline />
             <AppBar
                 position="fixed"
                 sx={{
                     width: { sm: `calc(100% - ${drawerWidth}px)` },
-                    ml: { sm: `${drawerWidth}px` },
+                    ml: { sm: `${drawerWidth}px` }, backgroundColor: '#4460AA'
                 }}
             >
                 <Toolbar>

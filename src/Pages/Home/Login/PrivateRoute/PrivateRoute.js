@@ -1,4 +1,4 @@
-import { CircularProgress } from '@mui/material';
+import { Box, CircularProgress } from '@mui/material';
 import React from 'react';
 import { useLocation, Navigate } from "react-router-dom";
 import useAuth from '../../../../hooks/useAuth';
@@ -8,7 +8,9 @@ const PrivateRoute = ({ children, ...rest }) => {
     let location = useLocation();
 
     if (isLoading) {
-        return <CircularProgress />
+        return <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <CircularProgress />
+        </Box>
     }
 
     if (user.email) {
