@@ -16,16 +16,49 @@ import DriveFileMoveIcon from '@mui/icons-material/DriveFileMove';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import DescriptionIcon from '@mui/icons-material/Description';
 import HomeIcon from '@mui/icons-material/Home';
+import axios from "axios";
 
 
 
 const drawerWidth = 200;
 
 function Dashboard(props) {
-    const { user, receptionist } = useAuth();
+    const { user} = useAuth();
     const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
+    const [adminEmail, setAdminEmail] = React.useState(null);
+    const [receptionistEmail, setReceptionistEmail] = React.useState(null);
 
+    // for admin 
+    React.useEffect(() => {
+        axios.get(`http://localhost:5000/admin`)
+            .then(res => {
+                const matchAdmin = res.data.find(singleData => singleData.admin === user.email)
+                if (matchAdmin) {
+                    setAdminEmail(matchAdmin.admin);
+                }
+                else {
+                    setAdminEmail(matchAdmin);
+                }
+
+            })
+    }, [])
+
+
+    // for receptionist 
+    React.useEffect(() => {
+        axios.get(`http://localhost:5000/receptionist`)
+            .then(res => {
+                const matchReceptionist = res.data.find(singleData => singleData.receptionist === user.email)
+                if (matchReceptionist) {
+                    setReceptionistEmail(matchReceptionist.receptionist);
+                }
+                else {
+                    setReceptionistEmail(matchReceptionist);
+                }
+
+            })
+    }, [])
 
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
@@ -44,7 +77,7 @@ function Dashboard(props) {
 
             <Box sx={{ textAlign: 'center', marginTop: '15PX' }}>
                 {
-                    !receptionist && <Box>
+                    !adminEmail && !receptionistEmail && <Box>
                         <Link
                             style={{ textDecoration: 'none', color: 'black' }}
                             to={`/dashboard`}>
@@ -73,30 +106,27 @@ function Dashboard(props) {
                                 All File
                             </Button>
                         </Link>
-                        <br />
                     </Box>
                 }
 
                 {
-                    receptionist && <Box>
-                        {/*start new  */}
+                    adminEmail && <Box>
+                        <Link
+                            style={{ textDecoration: 'none', color: 'black' }}
+                            to={`/dashboard`}>
+                            <Button color='inherit'>
+                                <HomeIcon sx={{ color: 'crimson' }} />
+                                Home
+                            </Button>
+                        </Link>
+                        <br />
+
                         <Link
                             style={{ textDecoration: 'none', color: 'black' }}
                             to={`/dashboard/allFile`}>
                             <Button color='inherit'>
                                 <DriveFileMoveIcon sx={{ color: 'GoldenRod' }} />
                                 All File
-                            </Button>
-                        </Link>
-                        <br />
-                        {/* end new  */}
-
-                        <Link
-                            style={{ textDecoration: 'none', color: 'black' }}
-                            to={`/dashboard/addFile`}>
-                            <Button color='inherit'>
-                                <AddBoxIcon sx={{ color: 'Peru' }} />
-                                Add File
                             </Button>
                         </Link>
 
@@ -108,9 +138,52 @@ function Dashboard(props) {
                                 Make Receptionist
                             </Button>
                         </Link>
+                        <Link
+                            style={{ textDecoration: 'none', color: 'black' }}
+                            to={`/dashboard/make-admin`}>
+                            <Button color='inherit'>
+                                <AddBoxIcon sx={{ color: 'Peru' }} />
+                                Make Admin
+                            </Button>
+                        </Link>
+                        <br />
                     </Box>
                 }
-                <br />
+
+                {
+                    receptionistEmail && <Box>
+                        <Link
+                            style={{ textDecoration: 'none', color: 'black' }}
+                            to={`/dashboard`}>
+                            <Button color='inherit'>
+                                <HomeIcon sx={{ color: 'crimson' }} />
+                                Home
+                            </Button>
+                        </Link>
+                        <br />
+
+                        <Link
+                            style={{ textDecoration: 'none', color: 'black' }}
+                            to={`/dashboard/allFile`}>
+                            <Button color='inherit'>
+                                <DriveFileMoveIcon sx={{ color: 'GoldenRod' }} />
+                                All File
+                            </Button>
+                        </Link>
+
+                        <Link
+                            style={{ textDecoration: 'none', color: 'black' }}
+                            to={`/dashboard/addFile`}>
+                            <Button color='inherit'>
+                                <AddBoxIcon sx={{ color: 'Peru' }} />
+                                Add File
+                            </Button>
+                        </Link>
+
+
+
+                    </Box>
+                }
             </Box>
 
         </div >

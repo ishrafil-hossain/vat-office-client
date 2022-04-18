@@ -173,7 +173,10 @@ const UpdateUser = () => {
                                                 // value={department}
                                                 label="department">
                                                 {
-                                                    users.map(user => <MenuItem value={user.department}>{user.department}</MenuItem>)
+                                                    users.map(user => {
+                                                        
+                                                        <MenuItem value={user.department}>{user.department}</MenuItem>
+                                                    })
 
                                                 }
 

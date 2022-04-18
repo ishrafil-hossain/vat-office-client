@@ -14,6 +14,7 @@ import useAuth from '../../../hooks/useAuth';
 
 import { styled } from '@mui/material/styles';
 import tableCellClasses from '@mui/material/TableCell';
+import axios from "axios";
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -40,7 +41,22 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 const AllFile = () => {
     const [allFiles, setAllFiles] = useState([]);
     const [search, setSearch] = useState('');
-    const { receptionist } = useAuth();
+    const {user } = useAuth();
+    const [adminEmail, setAdminEmail] = React.useState(null);
+
+    React.useEffect(() => {
+        axios.get(`http://localhost:5000/admin`)
+            .then(res => {
+                const matchAdmin = res.data.find(singleData => singleData.admin === user.email)
+                if (matchAdmin) {
+                    setAdminEmail(matchAdmin.admin);
+                }
+                else {
+                    setAdminEmail(matchAdmin);
+                }
+
+            })
+    }, [])
 
     useEffect(() => {
         fetch('https://shrouded-spire-42050.herokuapp.com/files/user')
@@ -91,7 +107,7 @@ const AllFile = () => {
                             <StyledTableCell align="center">Department</StyledTableCell>
 
                             {
-                                receptionist && <StyledTableCell align="center">Action</StyledTableCell>
+                                adminEmail && <StyledTableCell align="center">Action</StyledTableCell>
                             }
 
                         </TableRow>
@@ -122,7 +138,7 @@ const AllFile = () => {
                                 <StyledTableCell align="center">{row.department}</StyledTableCell>
                                 <StyledTableCell align="center">
                                     {
-                                        receptionist && <StyledTableCell align="center">
+                                        adminEmail && <StyledTableCell align="center">
 
 
                                             <Select>

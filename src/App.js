@@ -16,6 +16,7 @@ import Drop from './Pages/Dashboard/Drop/Drop';
 import UpdateUser from './Pages/Dashboard/UpdateUser/UpdateUser';
 import Home1 from './Pages/Dashboard/Home/Home';
 import Update from './Pages/Dashboard/Update/Update';
+import MakeAdmin from './Pages/Dashboard/MakeAdmin/MakeAdmin';
 
 
 function App() {
@@ -58,6 +59,8 @@ function App() {
             </Route>
 
             <Route path={`/dashboard/make-receptionist`} element={<MakeReceptionist />}>
+            </Route>
+            <Route path={`/dashboard/make-admin`} element={<MakeAdmin />}>
             </Route>
 
             <Route path={`/dashboard/drop`} element={<Drop />}>

@@ -9,7 +9,6 @@ const Register = () => {
     const [registerData, setRegisterData] = useState();
     const { user, registerUser, isLoading, authError } = useAuth();
     const [department, setDepartment] = useState('');
-    // const [image, setImage] = useState(null);
 
     const paperStyle = { padding: 20, height: '80vh', width: 280, margin: "20px auto" }
     const avatarStyle = { backgroundColor: '#1565C0' }
@@ -34,25 +33,7 @@ const Register = () => {
         if (registerData.password !== registerData.password2) {
             alert('your password did not match');
         }
-        // if (!image) {
-        //     return;
-        // }
-        // const formData = new FormData();
-        // formData.append('image', image);
-        // fetch('http://localhost:5000/users/photo', {
-        //     method: 'POST',
-        //     body: formData
-        // })
-        //     .then(response => response.json())
-        //     .then(result => {
-        //         console.log('Success:', result);
-        //     })
-        //     .catch(error => {
-        //         console.error('Error:', error);
-        //     });
-
-
-
+        
         registerUser(registerData.email, registerData.password, registerData.name, registerData.department, navigate);
     }
     return (
@@ -92,6 +73,8 @@ const Register = () => {
                                         <MenuItem value="Department-D">Department-D</MenuItem>
                                         <MenuItem value="Department-E">Department-E</MenuItem>
                                         <MenuItem value="Receptionist">Receptionist</MenuItem>
+
+                                        <MenuItem value="Admin">Admin</MenuItem>
                                     </Select>
                                 </FormControl>
 
