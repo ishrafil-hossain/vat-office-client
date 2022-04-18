@@ -14,6 +14,8 @@ const time_And_Date = new Date().toLocaleString();
 const AddFile = () => {
     const { user } = useAuth();
     const [departments, setDepartments] = useState([]);
+    const [selectedDepartment, setSelectedDepartment] = useState(null);
+    const [users, setUsers] = useState([]);
 
     useEffect(() => {
         const url = `https://shrouded-spire-42050.herokuapp.com/users`;
@@ -71,7 +73,22 @@ const AddFile = () => {
 
         e.preventDefault();
     }
-    
+
+    useEffect(() => {
+        const url = `https://shrouded-spire-42050.herokuapp.com/users`;
+        fetch(url)
+            .then(res => res.json())
+            .then(data => setUsers(data))
+    }, [])
+
+    const userOptions = new Map([
+        ...users.map(user => [user.department, user.department])
+    ]);
+
+    const filteredFiles = () => {
+        return users.filter(user => String(user.department) === selectedDepartment);
+    };
+
     return (
         <div>
             <Container>
@@ -123,14 +140,14 @@ const AddFile = () => {
                                         id="demo-simple-select-standard"
                                         name="department"
                                         onBlur={handleOnBlur}
+                                        onChange={({ target }) => setSelectedDepartment(target.value)}
                                         // value={department}
                                         label="department"
                                     >
-                                        <MenuItem value="Department-A">Department-A</MenuItem>
-                                        <MenuItem value="Department-B">Department-B</MenuItem>
-                                        <MenuItem value="Department-C">Department-C</MenuItem>
-                                        <MenuItem value="Department-D">Department-D</MenuItem>
-                                        <MenuItem value="Department-E">Department-E</MenuItem>
+
+                                        {[...userOptions].map(([department, displayName]) => (
+                                            <MenuItem value={department}> {displayName}</MenuItem>
+                                        ))}
                                     </Select>
                                 </FormControl>
 
@@ -143,9 +160,13 @@ const AddFile = () => {
                                         onBlur={handleOnBlur}
                                         // value={department}
                                         label="department">
-                                        {
-                                            departments.map(department => <MenuItem value={department.displayName}>{department.displayName}</MenuItem>)
-                                        }
+                                       
+                                        {filteredFiles().map(file => (
+                                            <MenuItem
+                                                value={file.displayName}>
+                                                {file.displayName}
+                                            </MenuItem>
+                                        ))}
 
                                     </Select>
                                 </FormControl>

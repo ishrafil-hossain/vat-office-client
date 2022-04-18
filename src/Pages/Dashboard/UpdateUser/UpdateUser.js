@@ -26,6 +26,8 @@ const UpdateUser = () => {
     const [file, setFile] = useState([]);
     const [users, setUsers] = useState(['']);
     const { id } = useParams();
+    const [selectedDepartment, setSelectedDepartment] = useState(null);
+    const [users1, setUsers1] = useState([]);
     useEffect(() => {
         const url = `https://shrouded-spire-42050.herokuapp.com/files/update/${id}`;
         fetch(url)
@@ -100,20 +102,21 @@ const UpdateUser = () => {
         e.preventDefault();
     }
 
-    const handleOnBlur = e => {
-        var selected = e.target.value;
-        // console.log(selected)
+    // dependent dropdown 
+    useEffect(() => {
+        const url = `https://shrouded-spire-42050.herokuapp.com/users`;
+        fetch(url)
+            .then(res => res.json())
+            .then(data => setUsers(data))
+    }, [])
 
-        users.filter(checkAdult)
+    const userOptions = new Map([
+        ...users.map(user => [user.department, user.department])
+    ]);
 
-        function checkAdult(user) {
-            if (user.department == selected) {
-                const result = user.displayName;
-                // console.log(result);
-            }
-        }
-    }
-    // console.log('users', users)
+    const filteredFiles = () => {
+        return users.filter(user => String(user.department) === selectedDepartment);
+    };
 
     return (
         <div>
@@ -167,17 +170,15 @@ const UpdateUser = () => {
                                             <Select
                                                 labelId="demo-simple-select-standard-label"
                                                 id="demo-simple-select-standard"
-                                                onChange={handleChangeDept}
+                                                onBlur={handleChangeDept}
                                                 name="department"
-                                                onBlur={handleOnBlur}
-                                                // value={department}
+                                                onChange={({ target }) => setSelectedDepartment(target.value)}
+                                                // onBlur={handleOnBlur}
+
                                                 label="department">
-                                                {
-                                                    users.map(user => <MenuItem
-                                                        value={user.department}>
-                                                        {user.department}
-                                                    </MenuItem>)
-                                                }
+                                                {[...userOptions].map(([department, displayName]) => (
+                                                    <MenuItem value={department}> {displayName}</MenuItem>
+                                                ))}
 
                                             </Select>
                                         </FormControl>
@@ -188,13 +189,15 @@ const UpdateUser = () => {
                                                 labelId="demo-simple-select-standard-label"
                                                 id="demo-simple-select-standard"
                                                 name="personName"
-                                                onChange={handleChangePersonName}
-                                                // onBlur={handleOnBlur}
-                                                // value={department}
+                                                onBlur={handleChangePersonName}
                                                 label="department">
-                                                {
-                                                    users.map(user => <MenuItem value={user.displayName}>{user.displayName}</MenuItem>)
-                                                }
+
+                                                {filteredFiles().map(file => (
+                                                    <MenuItem
+                                                        value={file.displayName}>
+                                                        {file.displayName}
+                                                    </MenuItem>
+                                                ))}
 
                                             </Select>
                                         </FormControl>
