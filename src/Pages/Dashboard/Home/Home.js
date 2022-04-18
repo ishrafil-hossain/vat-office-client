@@ -1,66 +1,50 @@
 import React, { useEffect, useState } from 'react';
 
 const Home = () => {
-    const [selectedAuthorId, setSelectedAuthorId] = useState(null);
-    const [file, setFile] = useState(null);
-    const books = [
-        {
-            id: 1,
-            name: "In Search of Lost Time ",
-            author: { name: "Marcel Proust", id: 1 }
-        },
-        { id: 2, name: "Ulysses", author: { name: "James Joyce", id: 2 } },
-        {
-            id: 3,
-            name: "Don Quixote",
-            author: { name: "Miguel de Cervantes", id: 3 }
-        },
-        { id: 4, name: "Hamlet", author: { name: "William Shakespeare", id: 4 } },
-        {
-            id: 5,
-            name: "Romeo and Juliet",
-            author: { name: "William Shakespeare", id: 4 }
-        },
-        { id: 6, name: "Dubliners", author: { name: "James Joyce", id: 2 } }
-    ];
+    const [selectedDepartment, setSelectedDepartment] = useState(null);
+    const [users, setUsers] = useState([]);
+
     useEffect(() => {
         const url = `https://shrouded-spire-42050.herokuapp.com/users`;
         fetch(url)
             .then(res => res.json())
-            .then(data => setFile(data))
+            .then(data => setUsers(data))
     }, [])
-    console.log(file)
 
-    const authorOptions = new Map([
-        ...books.map(book => [book.author.id, book.author.name])
+    const userOptions = new Map([
+        ...users.map(user => [user.department, user.department])
     ]);
 
-    console.log(selectedAuthorId);
-    const filteredBooks = () => {
-        if (!selectedAuthorId) {
-            return books;
-        }
-        return books.filter(book => String(book.author.id) === selectedAuthorId);
+    const filteredFiles = () => {
+        return users.filter(user => String(user.department) === selectedDepartment);
     };
+    // filteredFiles().map(file => console.log(file.displayName))
 
     return (
-        <div className="books">
+        <div>
             <select
-                className="books__select"
-                onChange={({ target }) => setSelectedAuthorId(target.value)}
+                onChange={({ target }) => setSelectedDepartment(target.value)}
             >
-                <option value=''>--Select author--</option>
-                {[...authorOptions].map(([id, name]) => (
-                    <option value={id}>{name}</option>
+                <option value=''>--Select Department--</option>
+                {[...userOptions].map(([department, displayName]) => (
+                    <option
+                        value={department}>
+                        {displayName}
+                    </option>
                 ))}
             </select>
-            <ul className="books__list">
-                {filteredBooks().map(book => (
-                    <li className="books__item">
-                        {book.name} by {book.author.name}
-                    </li>
+
+            <br />
+
+            <select>
+                <option value=''>--Select Name--</option>
+                {filteredFiles().map(file => (
+                    <option value={file.displayName}>
+                        {file.displayName}
+                    </option>
                 ))}
-            </ul>
+            </select>
+
         </div>
     );
 };

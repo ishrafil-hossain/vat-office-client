@@ -71,6 +71,7 @@ const AddFile = () => {
 
         e.preventDefault();
     }
+    
     return (
         <div>
             <Container>
