@@ -14,7 +14,7 @@ const MakeReceptionist = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         axios
-            .post("http://localhost:5000/receptionist", receptionist)
+            .post("https://shrouded-spire-42050.herokuapp.com/receptionist", receptionist)
             .then((res) => {
                 setReceptionist(res);
             });

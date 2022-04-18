@@ -14,7 +14,7 @@ const MakeAdmin = () => {
         e.preventDefault();
         // console.log(admin)
         axios
-            .post("http://localhost:5000/admin", admin)
+            .post("https://shrouded-spire-42050.herokuapp.com/admin", admin)
             .then((res) => {
                
                 setAdmin(res);

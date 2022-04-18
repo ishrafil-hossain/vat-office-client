@@ -23,7 +23,7 @@ import axios from "axios";
 const drawerWidth = 200;
 
 function Dashboard(props) {
-    const { user} = useAuth();
+    const { user } = useAuth();
     const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
     const [adminEmail, setAdminEmail] = React.useState(null);
@@ -31,7 +31,7 @@ function Dashboard(props) {
 
     // for admin 
     React.useEffect(() => {
-        axios.get(`http://localhost:5000/admin`)
+        axios.get(`https://shrouded-spire-42050.herokuapp.com/admin`)
             .then(res => {
                 const matchAdmin = res.data.find(singleData => singleData.admin === user.email)
                 if (matchAdmin) {
@@ -47,7 +47,7 @@ function Dashboard(props) {
 
     // for receptionist 
     React.useEffect(() => {
-        axios.get(`http://localhost:5000/receptionist`)
+        axios.get(`https://shrouded-spire-42050.herokuapp.com/receptionist`)
             .then(res => {
                 const matchReceptionist = res.data.find(singleData => singleData.receptionist === user.email)
                 if (matchReceptionist) {
@@ -129,6 +129,7 @@ function Dashboard(props) {
                                 All File
                             </Button>
                         </Link>
+                        <br />
 
                         <Link
                             style={{ textDecoration: 'none', color: 'black' }}
@@ -138,6 +139,7 @@ function Dashboard(props) {
                                 Make Receptionist
                             </Button>
                         </Link>
+                        <br />
                         <Link
                             style={{ textDecoration: 'none', color: 'black' }}
                             to={`/dashboard/make-admin`}>
@@ -170,6 +172,7 @@ function Dashboard(props) {
                                 All File
                             </Button>
                         </Link>
+                        <br />
 
                         <Link
                             style={{ textDecoration: 'none', color: 'black' }}
@@ -179,9 +182,6 @@ function Dashboard(props) {
                                 Add File
                             </Button>
                         </Link>
-
-
-
                     </Box>
                 }
             </Box>

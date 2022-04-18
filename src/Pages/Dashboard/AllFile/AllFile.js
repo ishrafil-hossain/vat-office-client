@@ -45,7 +45,7 @@ const AllFile = () => {
     const [adminEmail, setAdminEmail] = React.useState(null);
 
     React.useEffect(() => {
-        axios.get(`http://localhost:5000/admin`)
+        axios.get(`https://shrouded-spire-42050.herokuapp.com/admin`)
             .then(res => {
                 const matchAdmin = res.data.find(singleData => singleData.admin === user.email)
                 if (matchAdmin) {
