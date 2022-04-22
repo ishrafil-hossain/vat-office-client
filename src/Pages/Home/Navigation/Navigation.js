@@ -5,17 +5,18 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
+// import MenuIcon from '@mui/icons-material/Menu';
 import { NavLink } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
 import logo from '../Navigation/Logo/vat-office-logo.png'
+import LogoutIcon from '@mui/icons-material/Logout';
 
 const Navigation = () => {
     const { user, logout } = useAuth();
     return (
-        <Box sx={{ flexGrow: 1 }}>
+        <Box sx={{ flexGrow: 1}}>
             <AppBar position="static">
-                <Toolbar>
+                <Toolbar sx={{ backgroundColor: 'crimson', color: 'white' }}>
                     <IconButton
                         size="large"
                         edge="start"
@@ -23,19 +24,22 @@ const Navigation = () => {
                         aria-label="menu"
                         sx={{ mr: 2 }}
                     >
-                        <img style={{width:'50px', height:'50px'}} src={logo} alt="Logo" />
+                        <img style={{ width: '50px', height: '50px' }} src={logo} alt="Logo" />
                         {/* <MenuIcon /> */}
                     </IconButton>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                         Vat Office
                     </Typography>
-                    <NavLink style={{ textDecoration: 'none', color: 'white' }} to="/home">
+                    {/* <NavLink style={{ textDecoration: 'none', color: 'white' }} to="/home">
                         <Typography>Home</Typography>
-                    </NavLink>
+                    </NavLink> */}
 
                     {
                         user?.email ?
-                            <Button onClick={logout} color="inherit">Logout</Button>
+                            <Button onClick={logout} color="inherit">
+                                <LogoutIcon sx={{ color: 'white' }} />
+                                Logout
+                            </Button>
                             :
                             <NavLink style={{ textDecoration: 'none', color: 'white' }} to="/login">
                                 <Button color="inherit">Login</Button>

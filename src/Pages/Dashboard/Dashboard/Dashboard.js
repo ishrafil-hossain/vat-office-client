@@ -17,13 +17,14 @@ import AddBoxIcon from '@mui/icons-material/AddBox';
 import DescriptionIcon from '@mui/icons-material/Description';
 import HomeIcon from '@mui/icons-material/Home';
 import axios from "axios";
+import LogoutIcon from '@mui/icons-material/Logout';
 
 
 
 const drawerWidth = 200;
 
 function Dashboard(props) {
-    const { user } = useAuth();
+    const { user, logout } = useAuth();
     const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
     const [adminEmail, setAdminEmail] = React.useState(null);
@@ -75,7 +76,7 @@ function Dashboard(props) {
 
             {/* nested route in dashboard  */}
 
-            <Box sx={{ textAlign: 'center', marginTop: '15PX' }}>
+            <Box sx={{ marginTop: '15PX' }}>
                 {
                     !adminEmail && !receptionistEmail && <Box>
                         <Link
@@ -183,6 +184,17 @@ function Dashboard(props) {
                             </Button>
                         </Link>
                     </Box>
+                }
+
+                {/* log-out option and icon  */}
+                {
+                    <Box>
+                        <Button onClick={logout} color="inherit" style={{ fontWeight: "bold" }}>
+                            <LogoutIcon sx={{ color: 'crimson' }} />
+                            Logout
+                        </Button>
+                    </Box>
+
                 }
             </Box>
 
