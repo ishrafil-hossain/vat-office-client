@@ -8,6 +8,7 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import { NavLink } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
+import logo from '../Navigation/Logo/vat-office-logo.png'
 
 const Navigation = () => {
     const { user, logout } = useAuth();
@@ -22,7 +23,8 @@ const Navigation = () => {
                         aria-label="menu"
                         sx={{ mr: 2 }}
                     >
-                        <MenuIcon />
+                        <img style={{width:'50px', height:'50px'}} src={logo} alt="Logo" />
+                        {/* <MenuIcon /> */}
                     </IconButton>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                         Vat Office
