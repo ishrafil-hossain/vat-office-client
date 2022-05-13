@@ -20,7 +20,7 @@ const Footer = () => {
                     <Grid container spacing={2}>
                         <Grid item xs={12} md={6} >
                             <Box>
-                                <Typography variant="h4" sx={{ color: 'gray' }}>
+                                <Typography variant="h5" sx={{ color: 'gray' }}>
                                     Address
                                 </Typography>
                                 <Typography variant="h6" sx={{ my: 4, fontSize: 14, fontWeight: 300, color: 'gray'}}>
@@ -36,7 +36,7 @@ const Footer = () => {
                             </Box>
                         </Grid>
                         <Grid item xs={12} md={6}>
-                            <Typography variant="h4" sx={{ color: 'gray' }}>
+                            <Typography variant="h5" sx={{ color: 'gray' }}>
                                 Useful Link
                             </Typography>
                             <Typography variant="h4" sx={{ my: 4, fontSize: 14, fontWeight: 300, color: 'gray' }}>

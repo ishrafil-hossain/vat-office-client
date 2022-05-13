@@ -21,10 +21,10 @@ const Banner = () => {
                     <Grid container spacing={2}>
                         <Grid item xs={12} md={6} style={varticatCenter}>
                             <Box>
-                                <Typography variant="h3">
-                                    কাস্টমস, এক্সাইজ ও ভ্যাট কমিশনারেট, কুমিল্লায় স্বাগতম।
+                                <Typography variant="h3" sx={{color:'black'}}>
+                                  কাস্টমস, এক্সাইজ ও ভ্যাট কমিশনারেট, কুমিল্লায় স্বাগতম।
                                 </Typography>
-                                <Typography variant="h6" sx={{ my: 4, fontSize: 14, fontWeight: 300, color: 'gray' }}>
+                                <Typography variant="h6" sx={{ my: 4, fontSize: 14, fontWeight: 400, color: 'black' }}>
                                     প্রশাসনিক বিভাগ, চট্টগ্রাম এর অধিক্ষেত্রাধীন কুমিল্লা, ফেনী, নোয়াখালী, লক্ষ্মীপুর, চাঁদপুর এবং ব্রাহ্মণবাড়ীয়া এই ৬টি প্রশাসনিক জেলার ভৌগলিক এলাকা নিয়ে কাস্টমস, এক্সাইজ ও ভ্যাট কমিশনারেট, কুমিল্লা গঠিত হয়।
                                 </Typography>
 
