@@ -17,6 +17,8 @@ import UpdateUser from './Pages/Dashboard/UpdateUser/UpdateUser';
 import Home1 from './Pages/Dashboard/Home/Home';
 import Update from './Pages/Dashboard/Update/Update';
 import MakeAdmin from './Pages/Dashboard/MakeAdmin/MakeAdmin';
+import ForgotPassword from './Pages/Dashboard/ForgotPassword/ForgotPassword';
+
 
 
 function App() {
@@ -34,6 +36,9 @@ function App() {
           </Route>
 
           <Route path="/login" element={<Login />}>
+
+          </Route>
+          <Route path="/forgot-password" element={<ForgotPassword />}>
 
           </Route>
 

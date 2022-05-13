@@ -1,6 +1,6 @@
 import { Alert, Avatar, Button, Checkbox, CircularProgress, Container, FormControlLabel, Grid, Paper, TextField, Typography } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Box } from '@mui/system';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../../../../hooks/useAuth';
@@ -14,6 +14,8 @@ const Login = () => {
     const location = useLocation();
     const navigate = useNavigate();
 
+
+
     const paperStyle = { padding: 20, height: '70vh', width: 280, margin: "20px auto" }
     const avatarStyle = { backgroundColor: '#1565C0' }
     const btnstyle = { margin: '8px 0' }
@@ -21,6 +23,7 @@ const Login = () => {
     const handleOnBlur = e => {
         const field = e.target.name;
         const value = e.target.value;
+        console.log(field, value)
         const newLoginData = { ...loginData };
         newLoginData[field] = value;
         setLoginData(newLoginData);
@@ -30,8 +33,8 @@ const Login = () => {
     const handleLoginSubmit = e => {
         e.preventDefault();
         loginUser(loginData.email, loginData.password, location, navigate);
-
     }
+
     return (
         <div>
             <Container>
@@ -64,6 +67,7 @@ const Login = () => {
                                 variant="standard"
                             />
                             <Button
+                                autoFocus
                                 sx={{ width: 1, m: 1 }}
                                 type="submit"
                                 variant="contained"
@@ -71,6 +75,12 @@ const Login = () => {
                                 fullWidth>
                                 Sign In
                             </Button>
+
+                            <NavLink
+                                to='/forgot-password'
+                                style={{ textDecoration: 'none' }}>
+                                <Button variant="text">Forgot Password ?</Button>
+                            </NavLink>
 
                             <Typography > Do you haven't an account ?
                                 <NavLink

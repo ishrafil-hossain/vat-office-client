@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getAuth, createUserWithEmailAndPassword, signOut, onAuthStateChanged, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signOut, onAuthStateChanged, signInWithEmailAndPassword, updateProfile, sendPasswordResetEmail } from "firebase/auth";
 import initializeFirebase from "../Pages/Home/Login/Firebase/firebase.init";
 
 // initialize firebase app 
@@ -104,6 +104,11 @@ const useFirebase = () => {
 
     }
 
+    // forgot password 
+    const forgotPassword = (email) => {
+        return sendPasswordResetEmail(auth, email);
+    };
+
 
     return {
         user,
@@ -112,7 +117,8 @@ const useFirebase = () => {
         receptionist,
         registerUser,
         loginUser,
-        logout
+        logout,
+        forgotPassword
     }
 }
 
