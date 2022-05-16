@@ -125,13 +125,13 @@ const MyFile = () => {
                     <Table sx={{ minWidth: 700 }} aria-label="customized table">
                         <TableHead>
                             <TableRow>
-                                <StyledTableCell align="center">File Name</StyledTableCell>
-                                <StyledTableCell align="center">Department</StyledTableCell>
-                                <StyledTableCell align="center">Company Name</StyledTableCell>
-                                <StyledTableCell align="center">Person Name</StyledTableCell>
-                                <StyledTableCell align="center">Date and Time</StyledTableCell>
-                                <StyledTableCell align="center">Action</StyledTableCell>
-                                {/* <TableCell align="center">Work</TableCell> */}
+                                <StyledTableCell align="center" sx={{fontSize:"18px"}}>File Name</StyledTableCell>
+                                <StyledTableCell align="center" sx={{fontSize:"18px"}}>Department</StyledTableCell>
+                                <StyledTableCell align="center" sx={{fontSize:"18px"}}>Company Name</StyledTableCell>
+                                <StyledTableCell align="center" sx={{fontSize:"18px"}}>Person Name</StyledTableCell>
+                                <StyledTableCell align="center" sx={{fontSize:"18px"}}>Date and Time</StyledTableCell>
+                                <StyledTableCell align="center" sx={{fontSize:"18px"}}>Action</StyledTableCell>
+                                
 
                             </TableRow>
                         </TableHead>

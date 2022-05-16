@@ -101,10 +101,12 @@ const AllFile = () => {
                 <Table sx={{ minWidth: 700 }} aria-label="customized table">
                     <TableHead>
                         <TableRow>
-                            <StyledTableCell align="center">File Name</StyledTableCell>
-                            <StyledTableCell align="center">Company Name</StyledTableCell>
-                            <StyledTableCell align="center">Person Name</StyledTableCell>
-                            <StyledTableCell align="center">Department</StyledTableCell>
+                            <StyledTableCell sx={{fontSize:"18px"}}>File Name</StyledTableCell>
+                            <StyledTableCell sx={{fontSize:"18px"}}>Company Name</StyledTableCell>
+                            <StyledTableCell sx={{fontSize:"18px"}}>Person Name</StyledTableCell>
+                            <StyledTableCell sx={{fontSize:"18px"}}>Department</StyledTableCell>
+                            <StyledTableCell sx={{fontSize:"18px"}}>Date</StyledTableCell>
+                            
 
                             {
                                 adminEmail && <StyledTableCell align="center">Action</StyledTableCell>
@@ -132,11 +134,12 @@ const AllFile = () => {
                                 key={row._id}
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                             >
-                                <StyledTableCell align="center">{row.fileName}</StyledTableCell>
-                                <StyledTableCell align="center">{row.company}</StyledTableCell>
-                                <StyledTableCell align="center">{row.personName}</StyledTableCell>
-                                <StyledTableCell align="center">{row.department}</StyledTableCell>
-                                <StyledTableCell align="center">
+                                <StyledTableCell>{row.fileName}</StyledTableCell>
+                                <StyledTableCell>{row.company}</StyledTableCell>
+                                <StyledTableCell>{row.personName}</StyledTableCell>
+                                <StyledTableCell>{row.department}</StyledTableCell>
+                                <StyledTableCell>{row.date}</StyledTableCell>
+                                <StyledTableCell>
                                     {
                                         adminEmail && <StyledTableCell align="center">
 
