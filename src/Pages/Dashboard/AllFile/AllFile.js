@@ -105,7 +105,7 @@ const AllFile = () => {
                             <StyledTableCell sx={{fontSize:"18px"}}>Company Name</StyledTableCell>
                             <StyledTableCell sx={{fontSize:"18px"}}>Person Name</StyledTableCell>
                             <StyledTableCell sx={{fontSize:"18px"}}>Department</StyledTableCell>
-                            <StyledTableCell sx={{fontSize:"18px"}}>Date</StyledTableCell>
+                            <StyledTableCell sx={{fontSize:"18px"}}>Date and Time</StyledTableCell>
                             
 
                             {
