@@ -9,6 +9,7 @@ const time_And_Date = new Date().toLocaleString();
 const Update = () => {
     const [file, setFile] = useState([]);
     const [users, setUsers] = useState(['']);
+    const [selectedDepartment, setSelectedDepartment] = useState(null);
     const { id } = useParams();
     useEffect(() => {
         const url = ` https://shrouded-spire-42050.herokuapp.com/files/update/${id}`;
@@ -84,21 +85,14 @@ const Update = () => {
         e.preventDefault();
     }
 
+    const userOptions = new Map([
+        ...users.map(user => [user.department, user.department])
+    ]);
 
-    const handleOnBlur = e => {
-        var selected = e.target.value;
-        // console.log(selected)
+    const filteredFiles = () => {
+        return users.filter(user => String(user.department) === selectedDepartment);
+    };
 
-        users.filter(checkAdult)
-
-        function checkAdult(user) {
-            if (user.department == selected) {
-                const result = user.displayName;
-                // console.log(result);
-            }
-        }
-    }
-    // console.log('users', users)
 
     return (
         <div>
@@ -151,13 +145,11 @@ const Update = () => {
                                                 id="demo-simple-select-standard"
                                                 onChange={handleChangeDept}
                                                 name="department"
-                                                onBlur={handleOnBlur}
-                                                // value={department}
+                                                onBlur={({ target }) => setSelectedDepartment(target.value)}
                                                 label="department">
-                                                {
-                                                    users.map(user => <MenuItem value={user.department}>{user.department}</MenuItem>)
-
-                                                }
+                                                {[...userOptions].map(([department, displayName]) => (
+                                                    <MenuItem value={department}> {displayName}</MenuItem>
+                                                ))}
 
                                             </Select>
                                         </FormControl>
@@ -169,12 +161,13 @@ const Update = () => {
                                                 id="demo-simple-select-standard"
                                                 name="personName"
                                                 onChange={handleChangePersonName}
-                                                // onBlur={handleOnBlur}
-                                                // value={department}
                                                 label="department">
-                                                {
-                                                    users.map(user => <MenuItem value={user.displayName}>{user.displayName}</MenuItem>)
-                                                }
+                                                {filteredFiles().map(file => (
+                                                    <MenuItem
+                                                        value={file.displayName}>
+                                                        {file.displayName}
+                                                    </MenuItem>
+                                                ))}
 
                                             </Select>
                                         </FormControl>

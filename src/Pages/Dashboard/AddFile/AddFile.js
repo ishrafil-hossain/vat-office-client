@@ -25,7 +25,6 @@ const AddFile = () => {
             .then(data => setDepartments(data))
     }, [user])
 
-    // console.log(departments[0].department)
 
     const initialInfo = {
         fileName: '',
@@ -40,7 +39,6 @@ const AddFile = () => {
         const field = e.target.name;
         const value = e.target.value;
         const newFileData = { ...fileInfo };
-        // console.log(newFileData)
         newFileData[field] = value;
         setFileInfo(newFileData);
 
@@ -52,7 +50,7 @@ const AddFile = () => {
             ...fileInfo,
             date: new Date().toLocaleString()
         }
-        // console.log(files)
+        
 
         // send to the server 
         fetch('https://shrouded-spire-42050.herokuapp.com/files', {
@@ -141,7 +139,6 @@ const AddFile = () => {
                                         name="department"
                                         onBlur={handleOnBlur}
                                         onChange={({ target }) => setSelectedDepartment(target.value)}
-                                        // value={department}
                                         label="department"
                                     >
 
@@ -158,7 +155,6 @@ const AddFile = () => {
                                         id="demo-simple-select-standard"
                                         name="personName"
                                         onBlur={handleOnBlur}
-                                        // value={department}
                                         label="department">
                                        
                                         {filteredFiles().map(file => (
