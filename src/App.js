@@ -18,6 +18,7 @@ import Home1 from './Pages/Dashboard/Home/Home';
 import Update from './Pages/Dashboard/Update/Update';
 import MakeAdmin from './Pages/Dashboard/MakeAdmin/MakeAdmin';
 import ForgotPassword from './Pages/Dashboard/ForgotPassword/ForgotPassword';
+import NotFound from './Pages/NotFound/NotFound';
 
 
 
@@ -77,10 +78,15 @@ function App() {
               path={`/dashboard/update/:id`}
               element={<Update />}>
 
-            </Route>s
+            </Route>
           </Route>
           {/* dashboard nested route ending  */}
+          {/* <Route path="*">
+            <NotFound/>
+          </Route> */}
+          <Route path="*" element={<NotFound />}>
 
+          </Route>
         </Routes>
       </Router>
     </AuthProvider>

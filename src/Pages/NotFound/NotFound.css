@@ -1,0 +1,15 @@
+.not-found{
+    text-align: center;
+}
+
+.not-found>div>h2{
+    color: red;
+}
+
+.not-found>div>a{
+    text-decoration: none;
+    background-color: green;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+}
