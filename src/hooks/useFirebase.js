@@ -74,7 +74,7 @@ const useFirebase = () => {
 
     // receiptionist checker 
     useEffect(() => {
-        fetch(`https://shrouded-spire-42050.herokuapp.com/users/${user.email}`)
+        fetch(`https://vat-office-server.vercel.app/users/${user.email}`)
             .then(res => res.json())
             .then(data => setReceiptionist(data.receptionist))
     }, [user.email])
@@ -93,7 +93,7 @@ const useFirebase = () => {
 
     const saveUser = (email, displayName, department) => {
         const user = { email, displayName, department }
-        fetch('https://shrouded-spire-42050.herokuapp.com/users', {
+        fetch('https://vat-office-server.vercel.app/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

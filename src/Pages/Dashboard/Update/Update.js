@@ -12,14 +12,14 @@ const Update = () => {
     const [selectedDepartment, setSelectedDepartment] = useState(null);
     const { id } = useParams();
     useEffect(() => {
-        const url = ` https://shrouded-spire-42050.herokuapp.com/files/update/${id}`;
+        const url = ` https://vat-office-server.vercel.app/files/update/${id}`;
         fetch(url)
             .then(res => res.json())
             .then(data => setFile(data))
     }, [])
 
     useEffect(() => {
-        const url = `https://shrouded-spire-42050.herokuapp.com/users`;
+        const url = `https://vat-office-server.vercel.app/users`;
         fetch(url)
             .then(res => res.json())
             .then(data => setUsers(data))
@@ -66,7 +66,7 @@ const Update = () => {
 
     const handleUpdate = e => {
         console.log('working')
-        const url = `https://shrouded-spire-42050.herokuapp.com/users/update/${id}`;
+        const url = `https://vat-office-server.vercel.app/users/update/${id}`;
         fetch(url, {
             method: 'PUT',
             headers: {

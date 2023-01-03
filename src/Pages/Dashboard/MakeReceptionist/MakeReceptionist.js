@@ -14,7 +14,7 @@ const MakeReceptionist = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         axios
-            .post("https://shrouded-spire-42050.herokuapp.com/receptionist", receptionist)
+            .post("https://vat-office-server.vercel.app/receptionist", receptionist)
             .then((res) => {
                 setReceptionist(res);
             });

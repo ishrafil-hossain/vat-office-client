@@ -32,7 +32,7 @@ function Dashboard(props) {
 
     // for admin 
     React.useEffect(() => {
-        axios.get(`https://shrouded-spire-42050.herokuapp.com/admin`)
+        axios.get(`https://vat-office-server.vercel.app/admin`)
             .then(res => {
                 const matchAdmin = res.data.find(singleData => singleData.admin === user.email)
                 if (matchAdmin) {
@@ -48,7 +48,7 @@ function Dashboard(props) {
 
     // for receptionist 
     React.useEffect(() => {
-        axios.get(`https://shrouded-spire-42050.herokuapp.com/receptionist`)
+        axios.get(`https://vat-office-server.vercel.app/receptionist`)
             .then(res => {
                 const matchReceptionist = res.data.find(singleData => singleData.receptionist === user.email)
                 if (matchReceptionist) {
@@ -72,11 +72,11 @@ function Dashboard(props) {
                     {user.displayName}
                 </h3>
             </Toolbar>
-            <Divider/>
+            <Divider />
 
 
             {/* nested route in dashboard  */}
-            <Box sx={{ marginTop: '15PX'}}>
+            <Box sx={{ marginTop: '15PX' }}>
                 {
                     !adminEmail && !receptionistEmail && <Box>
                         <Link
@@ -204,7 +204,7 @@ function Dashboard(props) {
     const container = window !== undefined ? () => window().document.body : undefined;
 
     return (
-        <Box sx={{ display: 'flex'}}>
+        <Box sx={{ display: 'flex' }}>
             <CssBaseline />
             <AppBar
                 position="fixed"

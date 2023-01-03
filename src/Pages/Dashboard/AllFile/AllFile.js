@@ -41,11 +41,11 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 const AllFile = () => {
     const [allFiles, setAllFiles] = useState([]);
     const [search, setSearch] = useState('');
-    const {user } = useAuth();
+    const { user } = useAuth();
     const [adminEmail, setAdminEmail] = React.useState(null);
 
     React.useEffect(() => {
-        axios.get(`https://shrouded-spire-42050.herokuapp.com/admin`)
+        axios.get(`https://vat-office-server.vercel.app/admin`)
             .then(res => {
                 const matchAdmin = res.data.find(singleData => singleData.admin === user.email)
                 if (matchAdmin) {
@@ -59,7 +59,7 @@ const AllFile = () => {
     }, [])
 
     useEffect(() => {
-        fetch('https://shrouded-spire-42050.herokuapp.com/files/user')
+        fetch('https://vat-office-server.vercel.app/files/user')
             .then(res => res.json())
             .then(data => setAllFiles(data))
     }, []);
@@ -68,7 +68,7 @@ const AllFile = () => {
     const handleDelete = id => {
         const confirm = window.confirm('Are You Sure To Delete This File...?');
         if (confirm) {
-            fetch(`https://shrouded-spire-42050.herokuapp.com/files/user/${id}`, {
+            fetch(`https://vat-office-server.vercel.app/files/user/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())
@@ -101,12 +101,12 @@ const AllFile = () => {
                 <Table sx={{ minWidth: 700 }} aria-label="customized table">
                     <TableHead>
                         <TableRow>
-                            <StyledTableCell sx={{fontSize:"18px"}}>File Name</StyledTableCell>
-                            <StyledTableCell sx={{fontSize:"18px"}}>Company Name</StyledTableCell>
-                            <StyledTableCell sx={{fontSize:"18px"}}>Person Name</StyledTableCell>
-                            <StyledTableCell sx={{fontSize:"18px"}}>Department</StyledTableCell>
-                            <StyledTableCell sx={{fontSize:"18px"}}>Date and Time</StyledTableCell>
-                            
+                            <StyledTableCell sx={{ fontSize: "18px" }}>File Name</StyledTableCell>
+                            <StyledTableCell sx={{ fontSize: "18px" }}>Company Name</StyledTableCell>
+                            <StyledTableCell sx={{ fontSize: "18px" }}>Person Name</StyledTableCell>
+                            <StyledTableCell sx={{ fontSize: "18px" }}>Department</StyledTableCell>
+                            <StyledTableCell sx={{ fontSize: "18px" }}>Date and Time</StyledTableCell>
+
 
                             {
                                 adminEmail && <StyledTableCell align="center">Action</StyledTableCell>

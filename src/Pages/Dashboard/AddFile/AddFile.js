@@ -18,7 +18,7 @@ const AddFile = () => {
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
-        const url = `https://shrouded-spire-42050.herokuapp.com/users`;
+        const url = `https://vat-office-server.vercel.app/users`;
 
         fetch(url)
             .then(res => res.json())
@@ -50,10 +50,10 @@ const AddFile = () => {
             ...fileInfo,
             date: new Date().toLocaleString()
         }
-        
+
 
         // send to the server 
-        fetch('https://shrouded-spire-42050.herokuapp.com/files', {
+        fetch('https://vat-office-server.vercel.app/files', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -73,7 +73,7 @@ const AddFile = () => {
     }
 
     useEffect(() => {
-        const url = `https://shrouded-spire-42050.herokuapp.com/users`;
+        const url = `https://vat-office-server.vercel.app/users`;
         fetch(url)
             .then(res => res.json())
             .then(data => setUsers(data))
@@ -156,7 +156,7 @@ const AddFile = () => {
                                         name="personName"
                                         onBlur={handleOnBlur}
                                         label="department">
-                                       
+
                                         {filteredFiles().map(file => (
                                             <MenuItem
                                                 value={file.displayName}>

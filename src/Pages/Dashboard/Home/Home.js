@@ -34,7 +34,7 @@ const Home = () => {
     const [users, setUsers] = useState(['']);
 
     useEffect(() => {
-        const url = `https://shrouded-spire-42050.herokuapp.com/users`;
+        const url = `https://vat-office-server.vercel.app/users`;
         fetch(url)
             .then(res => res.json())
             .then(data => setUsers(data))
@@ -42,15 +42,15 @@ const Home = () => {
     console.log(users[0])
     return (
         <div>
-            <h1 style={{ textAlign: "center", color:"green" }}>At a Glance</h1>
+            <h1 style={{ textAlign: "center", color: "green" }}>At a Glance</h1>
 
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 700 }} aria-label="customized table">
                     <TableHead>
                         <TableRow>
-                            <StyledTableCell sx={{fontSize:"18px"}}>Name</StyledTableCell>
-                            <StyledTableCell sx={{fontSize:"18px"}}>E-mail</StyledTableCell>
-                            <StyledTableCell sx={{fontSize:"18px"}}>Department</StyledTableCell>
+                            <StyledTableCell sx={{ fontSize: "18px" }}>Name</StyledTableCell>
+                            <StyledTableCell sx={{ fontSize: "18px" }}>E-mail</StyledTableCell>
+                            <StyledTableCell sx={{ fontSize: "18px" }}>Department</StyledTableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -61,7 +61,7 @@ const Home = () => {
                                 <StyledTableCell>{user.displayName}</StyledTableCell>
                                 <StyledTableCell>{user.email}</StyledTableCell>
                                 <StyledTableCell>{user.department}</StyledTableCell>
-                            
+
                             </StyledTableRow>
                         ))}
                     </TableBody>

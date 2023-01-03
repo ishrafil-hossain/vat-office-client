@@ -14,9 +14,9 @@ const MakeAdmin = () => {
         e.preventDefault();
         // console.log(admin)
         axios
-            .post("https://shrouded-spire-42050.herokuapp.com/admin", admin)
+            .post("https://vat-office-server.vercel.app/admin", admin)
             .then((res) => {
-               
+
                 setAdmin(res);
             });
 

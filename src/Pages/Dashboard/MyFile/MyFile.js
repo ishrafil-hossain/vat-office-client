@@ -81,7 +81,7 @@ const MyFile = () => {
         console.log(files)
 
         // send to the server 
-        fetch('https://shrouded-spire-42050.herokuapp.com/files/receiption', {
+        fetch('https://vat-office-server.vercel.app/files/receiption', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -109,7 +109,7 @@ const MyFile = () => {
 
 
     useEffect(() => {
-        const url = `https://shrouded-spire-42050.herokuapp.com/files?name=${user.displayName}`;
+        const url = `https://vat-office-server.vercel.app/files?name=${user.displayName}`;
         fetch(url)
             .then(res => res.json())
             .then(data => setMyFiles(data))
@@ -125,13 +125,13 @@ const MyFile = () => {
                     <Table sx={{ minWidth: 700 }} aria-label="customized table">
                         <TableHead>
                             <TableRow>
-                                <StyledTableCell align="center" sx={{fontSize:"18px"}}>File Name</StyledTableCell>
-                                <StyledTableCell align="center" sx={{fontSize:"18px"}}>Department</StyledTableCell>
-                                <StyledTableCell align="center" sx={{fontSize:"18px"}}>Company Name</StyledTableCell>
-                                <StyledTableCell align="center" sx={{fontSize:"18px"}}>Person Name</StyledTableCell>
-                                <StyledTableCell align="center" sx={{fontSize:"18px"}}>Date and Time</StyledTableCell>
-                                <StyledTableCell align="center" sx={{fontSize:"18px"}}>Action</StyledTableCell>
-                                
+                                <StyledTableCell align="center" sx={{ fontSize: "18px" }}>File Name</StyledTableCell>
+                                <StyledTableCell align="center" sx={{ fontSize: "18px" }}>Department</StyledTableCell>
+                                <StyledTableCell align="center" sx={{ fontSize: "18px" }}>Company Name</StyledTableCell>
+                                <StyledTableCell align="center" sx={{ fontSize: "18px" }}>Person Name</StyledTableCell>
+                                <StyledTableCell align="center" sx={{ fontSize: "18px" }}>Date and Time</StyledTableCell>
+                                <StyledTableCell align="center" sx={{ fontSize: "18px" }}>Action</StyledTableCell>
+
 
                             </TableRow>
                         </TableHead>
