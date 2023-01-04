@@ -7,7 +7,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import useAuth from '../../../hooks/useAuth';
-import { Box, Button, Container, FormControl, Grid, InputLabel, MenuItem, Select, TextField, Typography } from '@mui/material';
+import { Box, Button, CircularProgress, Container, FormControl, Grid, InputLabel, MenuItem, Select, TextField, Typography } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 import emailjs from '@emailjs/browser';
 
@@ -120,7 +120,7 @@ const MyFile = () => {
         <div>
             {/* file list section  */}
             <section>
-                <h3 style={{ textAlign: "center" }}>Total file : {myFiles.length}</h3>
+                <h3 style={{ textAlign: "center" }}>Total file : {(myFiles.length === 0) ? <CircularProgress /> :myFiles.length}</h3>
                 <TableContainer component={Paper}>
                     <Table sx={{ minWidth: 700 }} aria-label="customized table">
                         <TableHead>

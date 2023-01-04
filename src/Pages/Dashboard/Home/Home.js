@@ -8,6 +8,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 import tableCellClasses from '@mui/material/TableCell';
+import { CircularProgress } from '@mui/material';
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -42,7 +43,7 @@ const Home = () => {
     console.log(users[0])
     return (
         <div>
-            <h1 style={{ textAlign: "center", color: "green" }}>At a Glance</h1>
+            <h1 style={{ textAlign: "center", color: "green" }}>At a Glance : {(users.length === 0) ? <CircularProgress /> : users.length}</h1>
 
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 700 }} aria-label="customized table">

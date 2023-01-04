@@ -6,7 +6,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { Button, MenuItem, Select, TextField } from '@mui/material';
+import { Button, CircularProgress, MenuItem, Select, TextField } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { Box } from '@mui/system';
 import { NavLink } from 'react-router-dom';
@@ -64,6 +64,7 @@ const AllFile = () => {
             .then(data => setAllFiles(data))
     }, []);
 
+
     // Delete a product 
     const handleDelete = id => {
         const confirm = window.confirm('Are You Sure To Delete This File...?');
@@ -83,7 +84,7 @@ const AllFile = () => {
 
     return (
         <div>
-            <h3 style={{ textAlign: "center" }}>Total File : {allFiles.length}</h3>
+            <h3 style={{ textAlign: "center" }}>Total File : {(allFiles.length === 0) ? <CircularProgress /> : allFiles.length}</h3>
 
             {/* search input  */}
             <Box sx={{ display: 'flex', alignItems: 'flex-end', mb: 5 }}>
