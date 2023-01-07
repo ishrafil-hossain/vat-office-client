@@ -43,7 +43,7 @@ const Home = () => {
     console.log(users[0])
     return (
         <div>
-            <h1 style={{ textAlign: "center", color: "green" }}>At a Glance : {(users.length === 0) ? <CircularProgress /> : users.length}</h1>
+            <h1 style={{ textAlign: "center", color: "green" }}>At a Glance : {(users.length === 1) ? <CircularProgress /> : users.length}</h1>
 
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 700 }} aria-label="customized table">
