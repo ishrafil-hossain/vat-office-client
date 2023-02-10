@@ -61,20 +61,19 @@ const useFirebase = () => {
     // User Observation 
     useEffect(() => {
         const unsubscribed = onAuthStateChanged(auth, (user) => {
-            if (user) {
+            if (user == null || user) {
                 setUser(user);
-            } else {
-                setUser({});
-            }
-            setIsLoading(false);
+                setIsLoading(false);
+            } 
         });
         return () => unsubscribed;
     }, [])
 
 
+    console.log('user.email', user)
     // receiptionist checker 
     useEffect(() => {
-        fetch(`https://vat-office-server.vercel.app/users/${user.email}`)
+        fetch(`https://vat-office-server.vercel.app/users/${user?.email}`)
             .then(res => res.json())
             .then(data => setReceiptionist(data.receptionist))
     }, [user.email])

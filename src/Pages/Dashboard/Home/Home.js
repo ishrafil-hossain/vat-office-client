@@ -43,7 +43,7 @@ const Home = () => {
     console.log(users[0])
     return (
         <div>
-            <h1 style={{ textAlign: "center", color: "green" }}>At a Glance : {(users.length === 1) ? <CircularProgress /> : users.length}</h1>
+            <h1 style={{ textAlign: "center", color: "green" }}>At a Glance : {(users?.length === 1) ? <CircularProgress /> : users?.length}</h1>
 
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -55,7 +55,7 @@ const Home = () => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {users.map((user) => (
+                        {users?.map((user) => (
                             <StyledTableRow
                                 key={user._id}
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
