@@ -14,7 +14,7 @@ const MakeReceptionist = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         axios
-            .post("https://vat-office-server.vercel.app/receptionist", receptionist)
+            .post("https://vat-office-server.onrender.com/receptionist", receptionist)
             .then((res) => {
                 setReceptionist(res);
             });

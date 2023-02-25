@@ -1,6 +1,6 @@
-import { Alert, Avatar, Button, Checkbox, CircularProgress, Container, FormControlLabel, Grid, Paper, TextField, Typography } from '@mui/material';
+import { Alert, Avatar, Button, CircularProgress, Container, Grid, Paper, TextField, Typography } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { Box } from '@mui/system';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../../../../hooks/useAuth';

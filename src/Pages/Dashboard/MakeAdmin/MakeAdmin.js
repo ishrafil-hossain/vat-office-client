@@ -14,7 +14,7 @@ const MakeAdmin = () => {
         e.preventDefault();
         // console.log(admin)
         axios
-            .post("https://vat-office-server.vercel.app/admin", admin)
+            .post("https://vat-office-server.onrender.com/admin", admin)
             .then((res) => {
 
                 setAdmin(res);

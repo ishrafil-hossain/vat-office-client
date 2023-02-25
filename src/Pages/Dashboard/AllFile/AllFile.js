@@ -45,9 +45,9 @@ const AllFile = () => {
     const [adminEmail, setAdminEmail] = React.useState(null);
 
     React.useEffect(() => {
-        axios.get(`https://vat-office-server.vercel.app/admin`)
+        axios.get(`https://vat-office-server.onrender.com/admin`)
             .then(res => {
-                const matchAdmin = res.data.find(singleData => singleData.admin === user.email)
+                const matchAdmin = res.data.find(singleData => singleData.admin === user?.email)
                 if (matchAdmin) {
                     setAdminEmail(matchAdmin.admin);
                 }
@@ -59,7 +59,7 @@ const AllFile = () => {
     }, [])
 
     useEffect(() => {
-        fetch('https://vat-office-server.vercel.app/files/user')
+        fetch('https://vat-office-server.onrender.com/files/user')
             .then(res => res.json())
             .then(data => setAllFiles(data))
     }, []);
@@ -69,7 +69,7 @@ const AllFile = () => {
     const handleDelete = id => {
         const confirm = window.confirm('Are You Sure To Delete This File...?');
         if (confirm) {
-            fetch(`https://vat-office-server.vercel.app/files/user/${id}`, {
+            fetch(`https://vat-office-server.onrender.com/files/user/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())

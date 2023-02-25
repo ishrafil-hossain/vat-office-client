@@ -1,7 +1,6 @@
 import { Button, Container, FormControl, Grid, InputLabel, MenuItem, Select, TextField, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import React, { useEffect, useState } from 'react';
-import useAuth from '../../../hooks/useAuth';
 
 const varticatCenter = {
     display: 'flex',
@@ -12,18 +11,8 @@ const varticatCenter = {
 const time_And_Date = new Date().toLocaleString();
 
 const AddFile = () => {
-    const { user } = useAuth();
-    const [departments, setDepartments] = useState([]);
     const [selectedDepartment, setSelectedDepartment] = useState(null);
     const [users, setUsers] = useState([]);
-
-    useEffect(() => {
-        const url = `https://vat-office-server.vercel.app/users`;
-
-        fetch(url)
-            .then(res => res.json())
-            .then(data => setDepartments(data))
-    }, [user])
 
 
     const initialInfo = {
@@ -53,7 +42,7 @@ const AddFile = () => {
 
 
         // send to the server 
-        fetch('https://vat-office-server.vercel.app/files', {
+        fetch('https://vat-office-server.onrender.com/files', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -73,7 +62,7 @@ const AddFile = () => {
     }
 
     useEffect(() => {
-        const url = `https://vat-office-server.vercel.app/users`;
+        const url = `https://vat-office-server.onrender.com/users`;
         fetch(url)
             .then(res => res.json())
             .then(data => setUsers(data))

@@ -1,16 +1,7 @@
 import React from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import { Button, Container, Typography } from '@mui/material';
-import { NavLink } from 'react-router-dom';
-import { textAlign } from '@mui/system';
-
-
-const varticatCenter = {
-    display: 'flex',
-    alignItems: 'center',
-    height: 500
-}
+import { Container, Typography } from '@mui/material';
 
 const Footer = () => {
     return (
@@ -23,7 +14,7 @@ const Footer = () => {
                                 <Typography variant="h5" sx={{ color: 'gray' }}>
                                     Address
                                 </Typography>
-                                <Typography variant="h6" sx={{ my: 4, fontSize: 14, fontWeight: 300, color: 'gray'}}>
+                                <Typography variant="h6" sx={{ my: 4, fontSize: 14, fontWeight: 300, color: 'gray' }}>
                                     ১৫২/১, এস. ইসলাম পার্ক ভিউ, পার্ক রোড, ছোটরা, কুমিল্লা-৩৫০০ <br />
                                     Telephone : 081-69291 <br />
                                     Fax : 081-65218 <br />

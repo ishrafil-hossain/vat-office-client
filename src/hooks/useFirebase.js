@@ -60,23 +60,21 @@ const useFirebase = () => {
 
     // User Observation 
     useEffect(() => {
-        const unsubscribed = onAuthStateChanged(auth, (user) => {
-            if (user == null || user) {
-                setUser(user);
+        const unsubscribed = onAuthStateChanged(auth, (currentUser) => {
+            if (currentUser == null || currentUser) {
+                setUser(currentUser);
                 setIsLoading(false);
-            } 
+            }
         });
         return () => unsubscribed;
     }, [])
 
-
-    console.log('user.email', user)
     // receiptionist checker 
     useEffect(() => {
-        fetch(`https://vat-office-server.vercel.app/users/${user?.email}`)
+        fetch(`https://vat-office-server.onrender.com/users/${user?.email}`)
             .then(res => res.json())
             .then(data => setReceiptionist(data.receptionist))
-    }, [user.email])
+    }, [user?.email])
 
 
     // User Logout 
@@ -92,7 +90,7 @@ const useFirebase = () => {
 
     const saveUser = (email, displayName, department) => {
         const user = { email, displayName, department }
-        fetch('https://vat-office-server.vercel.app/users', {
+        fetch('https://vat-office-server.onrender.com/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

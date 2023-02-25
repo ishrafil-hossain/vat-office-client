@@ -32,7 +32,7 @@ function Dashboard(props) {
 
     // for admin 
     React.useEffect(() => {
-        axios.get(`https://vat-office-server.vercel.app/admin`)
+        axios.get(`https://vat-office-server.onrender.com/admin`)
             .then(res => {
                 const matchAdmin = res.data.find(singleData => singleData.admin === user.email)
                 if (matchAdmin) {
@@ -48,7 +48,7 @@ function Dashboard(props) {
 
     // for receptionist 
     React.useEffect(() => {
-        axios.get(`https://vat-office-server.vercel.app/receptionist`)
+        axios.get(`https://vat-office-server.onrender.com/receptionist`)
             .then(res => {
                 const matchReceptionist = res.data.find(singleData => singleData.receptionist === user.email)
                 if (matchReceptionist) {

@@ -35,7 +35,7 @@ const Home = () => {
     const [users, setUsers] = useState(['']);
 
     useEffect(() => {
-        const url = `https://vat-office-server.vercel.app/users`;
+        const url = `https://vat-office-server.onrender.com/users`;
         fetch(url)
             .then(res => res.json())
             .then(data => setUsers(data))
